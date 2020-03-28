@@ -17,6 +17,122 @@ public class Show {
     private ProductionCompany productionCompany;
 
     private List<CreditsRoll> creditsRolls;
+    
+    public Show(int showid, String showTitle, double length, boolean isMovie, boolean isSeries,
+    		String genre, int year) {
+    	this.showid = showid;
+    	this.showTitle = showTitle;
+    	this.length = length;
+    	this.isMovie = isMovie;
+    	this.isSeries = isSeries;
+    	this.genre = genre;
+    	this.year = year;
+    }
+
+	public int getShowid() {
+		return showid;
+	}
+
+	public void setShowid(int showid) {
+		this.showid = showid;
+	}
+
+	public String getShowTitle() {
+		return showTitle;
+	}
+
+	public void setShowTitle(String showTitle) {
+		this.showTitle = showTitle;
+	}
+
+	public double getLength() {
+		return length;
+	}
+
+	public void setLength(double length) {
+		this.length = length;
+	}
+
+	public boolean isMovie() {
+		return isMovie;
+	}
+
+	public void setMovie(boolean isMovie) {
+		this.isMovie = isMovie;
+	}
+
+	public boolean isSeries() {
+		return isSeries;
+	}
+
+	public void setSeries(boolean isSeries) {
+		this.isSeries = isSeries;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public List<UserReview> getUserReviewList() {
+		return userReviewList;
+	}
+
+	public void setUserReviewList(List<UserReview> userReviewList) {
+		this.userReviewList = userReviewList;
+	}
+
+	public ProductionCompany getProductionCompany() {
+		return productionCompany;
+	}
+
+	public void setProductionCompany(ProductionCompany productionCompany) {
+		this.productionCompany = productionCompany;
+	}
+
+	public List<CreditsRoll> getCreditsRolls() {
+		return creditsRolls;
+	}
+
+	public void setCreditsRolls(List<CreditsRoll> creditsRolls) {
+		this.creditsRolls = creditsRolls;
+	}
+	
+	public String toString() {
+		StringBuilder sb =  new StringBuilder();
+		
+		sb.append("showid: " + showid + "\n");
+		sb.append("title: " + showTitle + "\n");
+		sb.append("movie Length: " + length + "\n");
+		sb.append("Genre: " + genre + "\n");
+		sb.append("year: " + year + "\n");
+		if(isSeries) {
+			sb.append("series: Yes" + "\n");
+		}else {
+			sb.append("showid: No" + "\n");
+		}
+		
+		if(isMovie) {
+			sb.append("Movie: Yes" + "\n");
+		}else {
+			sb.append("Movie: No" + "\n");
+		}
+		
+		return sb.toString();
+	}
+    
+    
 
 
 
