@@ -1,6 +1,9 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($show && $productionCompany && $actors)
+    
+   		<img src="$show.image" alt="$show.showTitle">
+   
     	<h1>$show.showTitle</h1>
     	<h2>$show.length</h2>
     	<h3>$show.genre</h3>

@@ -15,8 +15,6 @@ public class Show {
     private int proco_id;
     private List<UserReview> userReviewList;
     private ProductionCompany productionCompany;
-
-    private List<CreditsRoll> creditsRolls;
     
     public Show(int showid, String showTitle, double length, boolean isMovie, boolean isSeries,
     		String genre, int year, int proco_id) {
@@ -28,6 +26,10 @@ public class Show {
     	this.genre = genre;
     	this.year = year;
     	this.proco_id = proco_id;
+    }
+    
+    public String getImage() {
+    	return "/img/shows/" + showid + ".jpg";
     }
 
     public int getProcoId() {
@@ -108,14 +110,6 @@ public class Show {
 
 	public void setProductionCompany(ProductionCompany productionCompany) {
 		this.productionCompany = productionCompany;
-	}
-
-	public List<CreditsRoll> getCreditsRolls() {
-		return creditsRolls;
-	}
-
-	public void setCreditsRolls(List<CreditsRoll> creditsRolls) {
-		this.creditsRolls = creditsRolls;
 	}
 	
 	public String toString() {

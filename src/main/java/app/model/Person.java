@@ -24,6 +24,10 @@ public class Person {
         this.bio = b;
     }
     
+    public String getImage() {
+    	return "/img/people/" + personId + ".jpg";
+    }
+    
     public String toString() {
     	return fullName;
     }
