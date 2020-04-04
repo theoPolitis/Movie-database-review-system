@@ -25,6 +25,7 @@ public class LoginController {
 
     public static Handler handleLoginPost = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
+        //checks the username simple java work if its isnt in database it fails if it is it pases
         if (!UserController.authenticate(getQueryUsername(ctx), getQueryPassword(ctx))) {
             model.put("authenticationFailed", true);
             ctx.render(Template.LOGIN, model);

@@ -1,18 +1,11 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-
-<h1>Search Movies I Like</h1>
-<form id="searchTitleForm" method="post">
-
-    <label>Search by Show Title</label>
-    <input type="text" name="showTitleSearch" placeholder="Show Title" value="" required>
-    <input type="submit" value="Search">
-</form>
-
-
-<form id="searchActorForm" method="post">
-    <label>Search by Actor</label>
-    <input type="text" name="showActorSearch" placeholder="ActorName" value="" required>
-    <input type="submit" value="Search">
-</form>
+    #if($show)
+    <h1>$show.showTitle</h1>
+    <h2>$show.length</h2>
+    <h3>$show.genre</h3>
+    <h4>$show.year</h4>
+    #else
+    <h1>Sorry we are unable to find the show that you are looking for</h1>
+    #end
 #end

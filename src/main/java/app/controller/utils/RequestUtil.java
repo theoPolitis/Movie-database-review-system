@@ -13,6 +13,15 @@ public class RequestUtil {
     public static String getSessionCurrentUser(Context ctx) {
         return (String) ctx.sessionAttribute("currentUser");
     }
+    
+    public static String getQueryTitle(Context ctx) {
+		return ctx.formParam("showTitleSearch");
+	}
+	
+	public static String getQueryActor(Context ctx) {
+		return ctx.formParam("showActorSearch");
+	}
+    
 
 
 

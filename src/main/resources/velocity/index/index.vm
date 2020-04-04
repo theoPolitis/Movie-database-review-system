@@ -3,7 +3,6 @@
 
 <h1>Search Movies</h1>
 <form id="searchTitleForm" method="post">
-
     <label>Search by Show Title</label>
     <input type="text" name="showTitleSearch" placeholder="Show Title" value="" required>
     <input type="submit" value="Search">

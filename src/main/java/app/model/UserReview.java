@@ -13,21 +13,12 @@ public class UserReview {
     private int rating;
     private Date date;
 
-
-
-
-
-
     public UserReview(String r, int v) {
         review = r;
         rating = v;
         date = new Date();
     }
-
-
-
-
-
+    
     public String getReview() {
         return review;
     }

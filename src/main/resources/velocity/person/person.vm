@@ -1,0 +1,11 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+    #if($person)
+    <h1>$person.fullName</h1>
+    <h2>$person.role</h2>
+    <h3>$person.bio</h3>
+    <h4>$person.birthdate</h4>
+    #else
+    <h1>Sorry we are unable to find the person that you are looking for</h1>
+    #end
+#end

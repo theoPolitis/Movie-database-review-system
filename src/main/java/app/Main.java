@@ -3,6 +3,8 @@ package app;
 import app.controller.AccountController;
 import app.controller.IndexController;
 import app.controller.LoginController;
+import app.controller.SearchController;
+import app.controller.ShowController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import io.javalin.Javalin;
@@ -30,10 +32,14 @@ public class Main {
             // before(LoginController.ensureLoginBeforeViewing);
 
             get(Web.INDEX, IndexController.serveIndexPage);
+            post(Web.INDEX, SearchController.searchIndex);
 
             get(Web.LOGIN, LoginController.serveLoginPage);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
+            //get(Web.SHOW, ShowController.fetchShowByTitle);
+            
+            
 
             get(Web.ACCOUNT, AccountController.serveAccountPage);
 

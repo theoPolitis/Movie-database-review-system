@@ -9,8 +9,6 @@ import java.util.Map;
 
 
 public class IndexController {
-
-
     public static Handler serveIndexPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
         ctx.render(Template.INDEX, model);
