@@ -23,6 +23,10 @@ public class Person {
         this.birthdate = bd;
         this.bio = b;
     }
+    
+    public String toString() {
+    	return fullName;
+    }
 
 
 

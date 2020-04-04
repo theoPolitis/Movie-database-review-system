@@ -11,10 +11,15 @@ public class CreditsRoll {
 
 
 
-    public CreditsRoll(Person person, String role, int startYear) {
+    public CreditsRoll(Person person, String character, String role, int startYear) {
         this.person = person;
         this.role = role;
         this.startYear = startYear;
+        this.character = character;
+    }
+    
+    public String toString() {
+    	return person.toString();
     }
 
 

@@ -12,14 +12,14 @@ public class Show {
     private boolean isSeries;
     private String genre;
     private int year;
-
+    private int proco_id;
     private List<UserReview> userReviewList;
     private ProductionCompany productionCompany;
 
     private List<CreditsRoll> creditsRolls;
     
     public Show(int showid, String showTitle, double length, boolean isMovie, boolean isSeries,
-    		String genre, int year) {
+    		String genre, int year, int proco_id) {
     	this.showid = showid;
     	this.showTitle = showTitle;
     	this.length = length;
@@ -27,8 +27,17 @@ public class Show {
     	this.isSeries = isSeries;
     	this.genre = genre;
     	this.year = year;
+    	this.proco_id = proco_id;
     }
 
+    public int getProcoId() {
+    	return proco_id;
+    }
+    
+    public void setProcoId(int proco_id) {
+    	this.proco_id = proco_id;
+    }
+    
 	public int getShowid() {
 		return showid;
 	}

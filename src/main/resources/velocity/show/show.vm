@@ -1,11 +1,21 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
-    #if($show)
-    <h1>$show.showTitle</h1>
-    <h2>$show.length</h2>
-    <h3>$show.genre</h3>
-    <h4>$show.year</h4>
+    #if($show && $productionCompany && $actors)
+    	<h1>$show.showTitle</h1>
+    	<h2>$show.length</h2>
+    	<h3>$show.genre</h3>
+    	<h4>$show.year</h4>
+    	<h5>$productionCompany.name</h5>
+
+    	#foreach($actor in $actors)
+    		<h6>Actor: </h6>
+    		<h6>$actor.person</h6>
+    		<h6>$actor.character</h6>
+    		<h6>$actor.role</h6>
+    		<h6>$actor.startYear</h6>
+    	#end
+    	
     #else
-    <h1>Sorry we are unable to find the show that you are looking for</h1>
+   		<h1>Sorry we are unable to find the show that you are looking for</h1>
     #end
 #end

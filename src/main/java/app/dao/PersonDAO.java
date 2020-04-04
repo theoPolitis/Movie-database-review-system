@@ -50,4 +50,38 @@ public class PersonDAO {
         // If we are here, something bad happened
         return null;
     }
+    
+    public static Person getActorById(int id) {
+        // Fish out the results
+        List<Person> persons = new ArrayList<>();
+
+        try {
+            // Here you prepare your sql statement
+            String sql = "SELECT * "+ "FROM imbd.person WHERE person_id = " + id;
+
+            // Execute the query
+            Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            // If you have multiple results, you do a while
+            while(result.next()) {
+                // 2) Add it to the list we have prepared
+                persons.add(new Person(result.getInt("person_id"), result.getString("fullname"), result.getString("role"),
+                		result.getDate("birthdate"), result.getString("bio")));
+            }
+
+            // Close it
+            DatabaseUtils.closeConnection(connection);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        // If there is a result
+        if(!persons.isEmpty()) return persons.get(0);
+        // If we are here, something bad happened
+        return null;
+    }
 }
