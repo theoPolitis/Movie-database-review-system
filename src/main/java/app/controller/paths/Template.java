@@ -11,5 +11,7 @@ public class Template {
     public static final String ACCOUNT = "/velocity/account/account.vm";
     public static final String SHOW = "/velocity/show/show.vm";
     public static final String PERSON = "/velocity/person/person.vm";
+    public static final String SHOWERROR = "/velocity/error/showError.vm";
+    public static final String ACTORERROR = "/velocity/error/actorError.vm";
 
 }

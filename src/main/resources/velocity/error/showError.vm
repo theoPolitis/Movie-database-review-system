@@ -1,0 +1,4 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<h1>Please enter a movie or TV series into the search field on the Home page</h1>
+#end

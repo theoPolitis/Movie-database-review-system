@@ -14,10 +14,12 @@ public class RequestUtil {
         return (String) ctx.sessionAttribute("currentUser");
     }
     
+    //gets the title of the movie thats in the search box
     public static String getQueryTitle(Context ctx) {
 		return ctx.formParam("showTitleSearch");
 	}
 	
+    //gets the actor that is in the search box
 	public static String getQueryActor(Context ctx) {
 		return ctx.formParam("showActorSearch");
 	}

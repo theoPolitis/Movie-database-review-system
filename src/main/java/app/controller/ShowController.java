@@ -18,12 +18,16 @@ public class ShowController {
 	
 	public static void getShow(Context ctx, Map<String, Object> model) {
 		Show show = ShowDAO.getShowByTitle(RequestUtil.getQueryTitle(ctx));
-		ProductionCompany prC = ProductionCompanyDAO.getProductionCompanyById(show.getProcoId());
-		List<CreditsRoll> creditsRoll = CreditsRollDAO.getCreditsRollByMovieId(show.getShowid());		
-		System.out.println(creditsRoll);
-		model.put("show", show); //adds information about the show its searching for 
-		model.put("productionCompany", prC); //add info about the production company that made that show
-		model.put("actors", creditsRoll);
-		ctx.render(Template.SHOW, model);
+		if(show != null) {
+			ProductionCompany prC = ProductionCompanyDAO.getProductionCompanyById(show.getProcoId());
+			List<CreditsRoll> creditsRoll = CreditsRollDAO.getCreditsRollByMovieId(show.getShowid());		
+			System.out.println(creditsRoll);
+			model.put("show", show); //adds information about the show its searching for 
+			model.put("productionCompany", prC); //add info about the production company that made that show
+			model.put("actors", creditsRoll);
+			ctx.render(Template.SHOW, model);
+		}else {
+			ctx.render(Template.SHOWERROR, model);
+		}
 	}
 }

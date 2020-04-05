@@ -15,4 +15,6 @@ public class Web {
     public static final String ACCOUNT = "/account";
     public static final String SHOW = "/show";
     public static final String PERSON = "/person";
+    public static final String ACTORERROR = "/actorerror";
+    public static final String SHOWERROR = "/showerror";
 }

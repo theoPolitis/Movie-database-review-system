@@ -12,8 +12,7 @@ import java.util.Map;
 
 
 public class ViewUtil {
-
-
+	//do#if($currentuser) tells you if your logged in
     public static Map<String, Object> baseModel(Context ctx) {
         Map<String, Object> model = new HashMap<>();
         model.put("currentUser", RequestUtil.getSessionCurrentUser(ctx));

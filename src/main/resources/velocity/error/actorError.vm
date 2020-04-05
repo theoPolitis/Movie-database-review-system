@@ -1,0 +1,4 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<h1>Please enter an Actor in the search field on the Home page</h1>
+#end
