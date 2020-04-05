@@ -21,7 +21,6 @@ public class ShowController {
 		if(show != null) {
 			ProductionCompany prC = ProductionCompanyDAO.getProductionCompanyById(show.getProcoId());
 			List<CreditsRoll> creditsRoll = CreditsRollDAO.getCreditsRollByMovieId(show.getShowid());		
-			System.out.println(creditsRoll);
 			model.put("show", show); //adds information about the show its searching for 
 			model.put("productionCompany", prC); //add info about the production company that made that show
 			model.put("actors", creditsRoll);

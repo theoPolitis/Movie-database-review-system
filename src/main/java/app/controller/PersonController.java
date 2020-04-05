@@ -27,7 +27,6 @@ public class PersonController {
 				List<Show> movies = new ArrayList<>();
 				for(int i = 0; i < creditRoll.size(); i++) {
 					movies.add(ShowDAO.getShowById(creditRoll.get(i).getShowId()));
-					System.out.println(movies.get(i));
 				}
 				
 				model.put("movies", movies);
