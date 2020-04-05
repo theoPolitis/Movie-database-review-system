@@ -55,7 +55,7 @@ public class ShowDAO {
 
         try {
             // Here you prepare your sql statement
-            String sql = "SELECT * "+ "FROM imbd.show WHERE show_id LIKE '%" + showId + "%'";
+            String sql = "SELECT * "+ "FROM imbd.show WHERE showid LIKE '%" + showId + "%'";
 
             // Execute the query
             Connection connection = DatabaseUtils.connectToDatabase();

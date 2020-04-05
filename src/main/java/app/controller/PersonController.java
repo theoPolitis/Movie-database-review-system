@@ -18,13 +18,14 @@ public class PersonController {
 	public static void getActor(Context ctx, Map<String, Object> model) {
 		Person person = PersonDAO.getActorByName(RequestUtil.getQueryActor(ctx));
 		List<CreditsRoll> creditRoll = CreditsRollDAO.getMoviesByActor(person.getPersonId());
-		List<Show> movies = new ArrayList<Show>();
+		List<Show> movies = new ArrayList<>();
 		for(int i = 0; i < creditRoll.size(); i++) {
 			movies.add(ShowDAO.getShowById(creditRoll.get(i).getShowId()));
+			System.out.println(movies.get(i));
 		}
 		
 		model.put("person", person);
-		model.put("creditsRoll", movies);
+		model.put("movies", movies);
 		ctx.render(Template.PERSON, model);
 	}
 }

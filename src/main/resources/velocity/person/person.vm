@@ -7,8 +7,10 @@
     <h3>$person.bio</h3>
     <h4>$person.birthdate</h4>
     <h6>Movies this actor has been in</h6>
+    
     #foreach($movie in $movies)
     	<img src="$movie.image" alt="$movie.name">
+	#end
     #else
     <h1>Sorry we are unable to find the person that you are looking for</h1>
     #end
