@@ -7,19 +7,29 @@ public class CreditsRoll {
     private String character;
     private int startYear;
     private int endYear;
+    private int showId;
 
 
 
 
-    public CreditsRoll(Person person, String character, String role, int startYear) {
+    public CreditsRoll(Person person, String character, String role, int startYear, int showId) {
         this.person = person;
         this.role = role;
         this.startYear = startYear;
         this.character = character;
+        this.showId = showId;
     }
     
     public String toString() {
     	return person.toString();
+    }
+    
+    public int getShowId() {
+    	return showId;
+    }
+    
+    public void setShowId(int showId) {
+    	this.showId = showId;
     }
 
 
