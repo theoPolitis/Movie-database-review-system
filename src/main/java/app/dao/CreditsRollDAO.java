@@ -26,7 +26,7 @@ public class CreditsRollDAO {
             // If you have multiple results, you do a while
             while(result.next()) {
                 // 2) Add it to the list we have prepared
-            	creditsRoll.add(new CreditsRoll(PersonDAO.getActorById(result.getInt("person_id")), result.getString("character_name"),
+            	creditsRoll.add(new CreditsRoll(PersonDAO.getActorSelector(null, result.getInt("person_id")), result.getString("character_name"),
             			result.getString("role"), result.getInt("start_year"), result.getInt("show_id")));	
             }
             // Close it
@@ -43,6 +43,8 @@ public class CreditsRollDAO {
         return null;
     }
 	
+	
+	//essentially the same method as above but takes the person id instead
 	public static List<CreditsRoll> getMoviesByActor(int personId){
 		 // Fish out the results
         List<CreditsRoll> creditsRoll = new ArrayList<>();
@@ -59,7 +61,7 @@ public class CreditsRollDAO {
             // If you have multiple results, you do a while
             while(result.next()) {
                 // 2) Add it to the list we have prepared
-            	creditsRoll.add(new CreditsRoll(PersonDAO.getActorById(result.getInt("person_id")), result.getString("character_name"),
+            	creditsRoll.add(new CreditsRoll(PersonDAO.getActorSelector(null, result.getInt("person_id")), result.getString("character_name"),
             			result.getString("role"), result.getInt("start_year"), result.getInt("show_id")));
             }
 

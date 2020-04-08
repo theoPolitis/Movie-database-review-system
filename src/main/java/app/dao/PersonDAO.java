@@ -16,53 +16,30 @@ import java.util.stream.Collectors;
 
 
 public class PersonDAO {
-	//get the show by title
-    public static Person getActorByName(String name) {
+	
+	//selects what information it will search the datyabasde with
+	public static Person getActorSelector(String name, int id) {
+		String sqlId = "SELECT * "+ "FROM imbd.person WHERE person_id = " + id;
+		String sqlName = "SELECT * "+ "FROM imbd.person WHERE fullname LIKE '%" + name + "%'";
+		
+		if(id > 0) {
+			return getActor(null, id, sqlId);
+		}else if(name != null) {
+			return getActor(name, 0, sqlName);
+		}
+		
+		return null;
+	}
+	
+	//get the person
+	private static Person getActor(String name, int id,  String sqlFormat) {
         // Fish out the results
         List<Person> persons = new ArrayList<>();
 
         try {
-            // Here you prepare your sql statement
-            String sql = "SELECT * "+ "FROM imbd.person WHERE fullname LIKE '%" + name + "%'";
-
-            // Execute the query
             Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-
-            // If you have multiple results, you do a while
-            while(result.next()) {
-                // 2) Add it to the list we have prepared
-                persons.add(new Person(result.getInt("person_id"), result.getString("fullname"), result.getString("role"),
-                		result.getDate("birthdate"), result.getString("bio")));
-            }
-
-            // Close it
-            DatabaseUtils.closeConnection(connection);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        // If there is a result
-        if(!persons.isEmpty()) return persons.get(0);
-        // If we are here, something bad happened
-        return null;
-    }
-    
-    public static Person getActorById(int id) {
-        // Fish out the results
-        List<Person> persons = new ArrayList<>();
-
-        try {
-            // Here you prepare your sql statement
-            String sql = "SELECT * "+ "FROM imbd.person WHERE person_id = " + id;
-
-            // Execute the query
-            Connection connection = DatabaseUtils.connectToDatabase();
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
+            ResultSet result = statement.executeQuery(sqlFormat);
 
             // If you have multiple results, you do a while
             while(result.next()) {

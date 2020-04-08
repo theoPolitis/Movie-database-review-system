@@ -32,6 +32,7 @@ public class Main {
             // before(LoginController.ensureLoginBeforeViewing);
 
             get(Web.INDEX, IndexController.serveIndexPage);
+            //get the post data from the webpage index which is the page that we are search from
             post(Web.INDEX, SearchController.searchIndex);
 
             get(Web.LOGIN, LoginController.serveLoginPage);
