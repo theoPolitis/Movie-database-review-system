@@ -2,7 +2,7 @@
 #@mainLayout()
     #if($person)
 
-    <div class="container intro">
+    <div class="container">
         <h1 class="header">$person.fullName</h1>
 
         <img class="profile" src="$person.image" alt="$person.fullName">
@@ -14,12 +14,12 @@
 
     </div>
 
-    <div class="container info">
+    <div class="container">
         <h1 class="header">Personal Information</h1>
         <h4>Date of Birth: $person.birthdate</h4>
     </div>
 
-    <div class="container starsIn">
+    <div class="container">
         <h1 class="header">Stars In</h1>
 
         #foreach($movie in $movies)
