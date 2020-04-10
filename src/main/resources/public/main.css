@@ -288,3 +288,95 @@ a .bookCover img {
 .bad.notification {
     background: #bb0000;
 }
+
+/* Person and Show pages */
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.container {
+    display: block;
+    margin: 20px;
+    padding: 5px 15px;
+}
+
+.header {
+    border-bottom: 4px solid #F5C518;
+}
+
+.profile {
+    width: 40%;
+    border-radius: 3px;
+}
+
+.bio {
+    width: 50%;
+}
+
+.specs {
+    width: 50%;
+    padding: 20px 30px;
+}
+
+.poster {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #F5C518;
+}
+
+.posterCont {
+    position: relative;
+    width: 30%;
+}
+
+.posterCont:hover .overlay {
+    opacity: 1;
+    cursor: default;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.jumbo {
+    width: 50%;
+}
+
+table {
+    width: 100%;
+}
+
+thead {
+    background-color: #121212;
+    color: white;
+}
+
+td {
+    padding: 5px 10px;
+}

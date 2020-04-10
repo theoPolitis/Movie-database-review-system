@@ -1,17 +1,44 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($person)
-    <img src="$person.image" alt="$person.fullName">
-    <h1>$person.fullName</h1>
-    <h2>$person.role</h2>
-    <h3>$person.bio</h3>
-    <h4>$person.birthdate</h4>
-    <h6>Movies this actor has been in</h6>
-    
-    #foreach($movie in $movies)
-    	<img src="$movie.image" alt="$movie.name">
+
+    <div class="container intro">
+        <h1 class="header">$person.fullName</h1>
+
+        <img class="profile" src="$person.image" alt="$person.fullName">
+
+        <div class="bio right">
+            <h3>$person.role</h3>
+            <p>$person.bio</p>
+        </div>
+
+    </div>
+
+    <div class="container info">
+        <h1 class="header">Personal Information</h1>
+        <h4>Date of Birth: $person.birthdate</h4>
+    </div>
+
+    <div class="container starsIn">
+        <h1 class="header">Stars In</h1>
+
+        #foreach($movie in $movies)
+
+            <div class="posterCont">
+                <img class="poster" src="$movie.image" alt="$movie.showTitle">
+                <div class="overlay">
+                    <span class="text">$movie.showTitle</span>
+                </div>
+            </div>
+
+    </div>
+
 	#end
+
+
     #else
+
     <h1>Sorry we are unable to find the person that you are looking for</h1>
+
     #end
 #end

@@ -1,22 +1,47 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($show && $productionCompany && $actors)
-    
-   		<img src="$show.image" alt="$show.showTitle">
-   
-    	<h1>$show.showTitle</h1>
-    	<h2>$show.length</h2>
-    	<h3>$show.genre</h3>
-    	<h4>$show.year</h4>
-    	<h5>$productionCompany.name</h5>
 
-    	#foreach($actor in $actors)
-    		<h6>Actor: </h6>
-    		<h6>$actor.person</h6>
-    		<h6>$actor.character</h6>
-    		<h6>$actor.role</h6>
-    		<h6>$actor.startYear</h6>
-    	#end
+	<div class="container">
+
+		<h1 class="header">$show.showTitle - ($show.year)</h1>
+
+		<img class="jumbo" src="$show.image" alt="$show.showTitle">
+
+		<div class="specs right">
+			<h3>Specifications</h3>
+			<p>Runtime: $show.length hrs</p>
+			<p>Genre: $show.genre</p>
+			<p>Productions Company: $productionCompany.name</p>
+		</div>
+
+	</div>
+
+	<div class="container">
+		<h1 class="header">Cast</h1>
+		<table>
+			<thead>
+				<td>Cast Member</td>
+				<td>Character</td>
+				<td>Role</td>
+				<td>Start Year</td>
+			</thead>
+			#foreach($actor in $actors)
+				<tr>
+					<td>$actor.person</td>
+					<td>$actor.character</td>
+					<td>$actor.role</td>
+					<td>$actor.startYear</td>
+				</tr>
+			#end
+
+		</table>
+	</div>
+
+	<div class="container">
+		<h1 class="header">User Reviews</h1>
+	</div>
+
     	
     #else
    		<h1>Sorry we are unable to find the show that you are looking for</h1>
