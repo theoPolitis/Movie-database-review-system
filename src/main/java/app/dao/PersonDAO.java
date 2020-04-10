@@ -19,20 +19,26 @@ public class PersonDAO {
 	
 	//selects what information it will search the datyabasde with
 	public static Person getActorSelector(String name, int id) {
+		//had to sanitise the string as if a name contained ' it would fail but replace ' with ''
+		String nameSanitize = name;
+		if(name != null) {
+			nameSanitize = name.replaceAll("'", "''");
+		}
+		
 		String sqlId = "SELECT * "+ "FROM imbd.person WHERE person_id = " + id;
-		String sqlName = "SELECT * "+ "FROM imbd.person WHERE fullname LIKE '%" + name + "%'";
+		String sqlName = "SELECT * "+ "FROM imbd.person WHERE fullname LIKE '%" + nameSanitize + "%'";
 		
 		if(id > 0) {
-			return getActor(null, id, sqlId);
+			return getActor(sqlId);
 		}else if(name != null) {
-			return getActor(name, 0, sqlName);
+			return getActor(sqlName);
 		}
 		
 		return null;
 	}
 	
 	//get the person
-	private static Person getActor(String name, int id,  String sqlFormat) {
+	private static Person getActor(String sqlFormat) {
         // Fish out the results
         List<Person> persons = new ArrayList<>();
 
