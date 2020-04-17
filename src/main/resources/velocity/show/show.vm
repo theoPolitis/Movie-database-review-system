@@ -13,6 +13,15 @@
 			<p>Runtime: $show.length hrs</p>
 			<p>Genre: $show.genre</p>
 			<p>Productions Company: $productionCompany.name</p>
+			#if($currentUser)
+				<i class="fa fa-star" data-index="0"></i>
+				<i class="fa fa-star" data-index="1"></i>
+				<i class="fa fa-star" data-index="2"></i>
+				<i class="fa fa-star" data-index="3"></i>
+				<i class="fa fa-star" data-index="4"></i>
+			#else
+				<h3>Login to rate Shows<h3>
+			#end
 		</div>
 
 	</div>
@@ -46,4 +55,42 @@
     #else
    		<h1>Sorry we are unable to find the show that you are looking for</h1>
     #end
+    
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+	<script>
+		var ratedIndex = -1;
+		
+		$(document).ready(function() {
+			resetStars();
+			
+			$('.fa-star').on('click', function () {
+				ratedIndex = parseInt($(this).data('index'));
+				console.log(ratedIndex);
+			});
+			
+			$('.fa-star').mouseover(function () {
+				resetStars();
+				
+				var currDataIndex = parseInt($(this).data('index'));
+				
+				for(var i=0; i <= currDataIndex; i++)
+					$('.fa-star:eq('+i+')').css('color', '#ffdf00');
+			});
+		});
+		
+		$('.fa-star').mouseleave(function () {
+				resetStars();
+				
+				if(ratedIndex != -1){
+					for(var i=0; i <= ratedIndex; i++){
+						$('.fa-star:eq('+i+')').css('color', '#ffdf00');
+					}
+				}
+			});
+			
+		function resetStars(){
+		$('.fa-star').css('color', 'black');
+		}
+		
+	</script>
 #end

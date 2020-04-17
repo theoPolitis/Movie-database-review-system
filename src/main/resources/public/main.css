@@ -380,3 +380,8 @@ thead {
 td {
     padding: 5px 10px;
 }
+
+.ratings {
+    background: White;
+    padding: 50px;
+}
