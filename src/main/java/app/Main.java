@@ -7,6 +7,7 @@ import app.controller.SearchController;
 import app.controller.ShowController;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
+import app.model.Show;
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -39,6 +40,7 @@ public class Main {
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
             //get(Web.SHOW, ShowController.fetchShowByTitle);
+            post(Web.SHOW, ShowController.showIndex);
             
             
 

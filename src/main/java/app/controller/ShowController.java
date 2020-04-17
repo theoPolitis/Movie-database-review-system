@@ -13,8 +13,14 @@ import app.model.CreditsRoll;
 import app.model.ProductionCompany;
 import app.model.Show;
 import io.javalin.http.Context;
+import io.javalin.http.Handler;
 
 public class ShowController {
+	
+	public static Handler showIndex = ctx -> {
+		Map<String, Object> model = ViewUtil.baseModel(ctx);
+		getShow(ctx, model);
+	};
 	
 	public static void getShow(Context ctx, Map<String, Object> model) {
 		Show show = ShowDAO.getShowSelector(RequestUtil.getQueryTitle(ctx), 0);
@@ -23,6 +29,7 @@ public class ShowController {
 			List<CreditsRoll> creditsRoll = CreditsRollDAO.getCreditsRollByMovieId(show.getShowid());
 			if(RequestUtil.getRating(ctx) != null) {
 				int rating = Integer.parseInt(RequestUtil.getRating(ctx));
+				System.out.println(rating);
 			}
 			model.put("show", show); //adds information about the show its searching for 
 			model.put("productionCompany", prC); //add info about the production company that made that show

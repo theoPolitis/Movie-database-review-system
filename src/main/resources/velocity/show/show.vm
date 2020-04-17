@@ -13,20 +13,12 @@
 			<p>Runtime: $show.length hrs</p>
 			<p>Genre: $show.genre</p>
 			<p>Productions Company: $productionCompany.name</p>
-			#if($currentUser)
-			<form id="ratingStar" method="post">
-				<i class="fa fa-star" data-index="0"></i>
-				<i class="fa fa-star" data-index="1"></i>
-				<i class="fa fa-star" data-index="2"></i>
-				<i class="fa fa-star" data-index="3"></i>
-				<i class="fa fa-star" data-index="4"></i>
-				<input type="hidden" id="ratingNumber" name="rating">
-				<input type="hidden" id="showId" name="showId" value=$show.showid>
-				<input type="submit" value="Rate">				
-			</form>
-			#else
-				<h3>Login to rate Shows<h3>
-			#end
+			
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
+			<i class="fa fa-star"></i>
 		</div>
 
 	</div>
@@ -54,6 +46,18 @@
 
 	<div class="container">
 		<h1 class="header">User Reviews</h1>
+		<form id="review" method="post">
+				<i class="fa fa-star review" data-index="0"></i>
+				<i class="fa fa-star review" data-index="1"></i>
+				<i class="fa fa-star review" data-index="2"></i>
+				<i class="fa fa-star review" data-index="3"></i>
+				<i class="fa fa-star review" data-index="4"></i>
+				<input type="hidden" id="ratingNumber" name="rating">
+				<input type="hidden" id="showId" name="showId" value=$show.showid>
+				<input type="submit" value="Rate">				
+		<textarea rows="6" cols="50" name="textReview">Write review here...</textarea>
+		<input type="submit" value="submit">
+		</form>
 	</div>
 
     	
@@ -69,7 +73,7 @@
 		$(document).ready(function() {
 			resetStars();
 			
-			$('.fa-star').on('click', function () {
+			$('.review').on('click', function () {
 				ratedIndex = parseInt($(this).data('index'));
 				actualRating = ratedIndex;
 				actualRating++;
@@ -77,13 +81,13 @@
 				document.getElementById("ratingNumber").value = actualRating;
 			});
 			
-			$('.fa-star').mouseover(function () {
+			$('.review').mouseover(function () {
 				resetStars();
 				
 				var currDataIndex = parseInt($(this).data('index'));
 				
 				for(var i=0; i <= currDataIndex; i++)
-					$('.fa-star:eq('+i+')').css('color', '#ffdf00');
+					$('.review:eq('+i+')').css('color', '#ffdf00');
 			});
 		});
 		
@@ -92,13 +96,13 @@
 				
 				if(ratedIndex != -1){
 					for(var i=0; i <=  ratedIndex; i++){
-						$('.fa-star:eq('+i+')').css('color', '#ffdf00');
+						$('.review:eq('+i+')').css('color', '#ffdf00');
 					}
 				}
 			});
 			
 		function resetStars(){
-		$('.fa-star').css('color', 'black');
+		$('.review').css('color', 'black');
 		}
 		
 	</script>
