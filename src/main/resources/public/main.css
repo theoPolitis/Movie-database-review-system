@@ -386,4 +386,23 @@ td {
     padding: 50px;
 }
 
+.formReview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    
+}
+
+.reviewOne {
+    padding: 10px;
+}
+
+.reviewThree {
+    padding: 10px;
+}
+
+
+
 
