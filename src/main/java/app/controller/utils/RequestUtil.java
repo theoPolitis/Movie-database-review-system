@@ -23,6 +23,14 @@ public class RequestUtil {
 	public static String getQueryActor(Context ctx) {
 		return ctx.formParam("showActorSearch");
 	}
+	
+	public static String getRating(Context ctx) {
+		return ctx.formParam("ratingNumber");
+	}
+	
+	public static String getShowId(Context ctx) {
+		return ctx.formParam("showId");
+	}
     
 
 
