@@ -1,8 +1,7 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($show && $productionCompany && $actors)
-
-	<div class="container">
+		<div class="container">
 
 		<h1 class="header">$show.showTitle - ($show.year)</h1>
 
@@ -20,52 +19,57 @@
 			<i class="fa fa-star"></i>
 			<i class="fa fa-star"></i>
 		</div>
+		
+		</div>
 
-	</div>
-
-	<div class="container">
-		<h1 class="header">Cast</h1>
-		<table>
-			<thead>
-				<td>Cast Member</td>
-				<td>Character</td>
-				<td>Role</td>
-				<td>Start Year</td>
-			</thead>
-			#foreach($actor in $actors)
-				<tr>
-					<td>$actor.person</td>
-					<td>$actor.character</td>
-					<td>$actor.role</td>
-					<td>$actor.startYear</td>
-				</tr>
+		<div class="container">
+			<h1 class="header">Cast</h1>
+			<table>
+				<thead>
+					<td>Cast Member</td>
+					<td>Character</td>
+					<td>Role</td>
+					<td>Start Year</td>
+				</thead>
+				#foreach($actor in $actors)
+					<tr>
+						<td>$actor.person</td>
+						<td>$actor.character</td>
+						<td>$actor.role</td>
+						<td>$actor.startYear</td>
+					</tr>
 			#end
-
 		</table>
 	</div>
-
-	<div class="formContainer">
+	
+		#if($currentUser)
+			<div class="formContainer">
+				<h1 class="header">Write a Review</h1>
+				<form class="formReview" id="review" method="post">
+					<div class="reviewOne">
+						<i class="fa fa-star review" data-index="0"></i>
+						<i class="fa fa-star review" data-index="1"></i>
+						<i class="fa fa-star review" data-index="2"></i>
+						<i class="fa fa-star review" data-index="3"></i>
+						<i class="fa fa-star review" data-index="4"></i>
+					</div>
+						<input type="hidden" id="ratingNumber" name="rating">
+						<input type="hidden" id="showId" name="showId" value=$show.showid>		
+					<div class="reviewTwo">	
+						<textarea rows="6" cols="120" name="textReview">Write review here...</textarea>
+					</div>
+					
+					<div class="reviewThree">
+						<input class="rateButton" type="submit" value="Rate">
+					</div>
+				</form>
+			</div>
+		#else
+			<h2 class="rateLoginError" >You must log in to rate and review shows</h2>
+		#end
+		<div>
 		<h1 class="header">User Reviews</h1>
-		<form class="formReview" id="review" method="post">
-			<div class="reviewOne">
-				<i class="fa fa-star review" data-index="0"></i>
-				<i class="fa fa-star review" data-index="1"></i>
-				<i class="fa fa-star review" data-index="2"></i>
-				<i class="fa fa-star review" data-index="3"></i>
-				<i class="fa fa-star review" data-index="4"></i>
-			</div>
-				<input type="hidden" id="ratingNumber" name="rating">
-				<input type="hidden" id="showId" name="showId" value=$show.showid>		
-			<div class="reviewTwo">	
-				<textarea rows="6" cols="120" name="textReview">Write review here...</textarea>
-			</div>
-			<div class="reviewThree">
-				<input class="rateButton" type="submit" value="Rate">
-			</div>
-		</form>
-	</div>
-
-    	
+		</div>	
     #else
    		<h1>Sorry we are unable to find the show that you are looking for</h1>
     #end
