@@ -53,4 +53,17 @@ public class UserReview {
     public Date getDate() {
         return date;
     }
+    
+    public String toString() {
+    	StringBuilder sb = new StringBuilder();
+    	
+    	sb.append("reviewid: " + reviewId);
+    	sb.append("showId: " + showId);
+    	sb.append("userName: " + userName);
+    	sb.append("Rating: " + rating);
+    	sb.append("Review: " + review);
+    	sb.append("Date: " + date);
+    	
+    	return sb.toString();
+    }
 }

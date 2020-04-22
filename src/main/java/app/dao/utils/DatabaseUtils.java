@@ -4,6 +4,10 @@ package app.dao.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
+
+import app.dao.RatingDAO;
+import app.model.UserReview;
 
 
 /**
@@ -16,10 +20,8 @@ import java.sql.SQLException;
  */
 public class DatabaseUtils {
 
-
-
     public static Connection connectToDatabase() throws Exception {
-        // creates a Connection objecti
+        // creates a Connection object
         Connection connection = null;
 
         try {
@@ -51,6 +53,21 @@ public class DatabaseUtils {
                 ex.printStackTrace();
             }
         }
+    }
+    
+    public static int getNewReviewNumber() {
+    	//uses the DAO to get all the reviews
+    	
+    	//gets the total size of the array
+    	int sizeArray = RatingDAO.getArraySize();
+    	
+    	//if there is nothing in the array just return 0;
+    	if(sizeArray == 0) {
+    		return 1;
+    	}
+    	
+    	return sizeArray + 1;
+    	
     }
 
 

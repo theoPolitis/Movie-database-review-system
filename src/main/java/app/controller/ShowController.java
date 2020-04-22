@@ -8,6 +8,7 @@ import app.controller.paths.Template;
 import app.controller.utils.*;
 import app.dao.CreditsRollDAO;
 import app.dao.ProductionCompanyDAO;
+import app.dao.RatingDAO;
 import app.dao.ShowDAO;
 import app.model.CreditsRoll;
 import app.model.ProductionCompany;
@@ -24,13 +25,21 @@ public class ShowController {
 	
 	public static void getShow(Context ctx, Map<String, Object> model) {
 		Show show = ShowDAO.getShowSelector(RequestUtil.getQueryTitle(ctx), 0);
+		
+		if(show == null) {
+			if(RequestUtil.getShowId(ctx) != null) {
+				show = ShowDAO.getShowSelector(null, Integer.parseInt(RequestUtil.getShowId(ctx)));
+			}else {
+				ctx.render(Template.SHOWERROR, model);
+				return;
+			}
+		}
+		
 		if(show != null) {//checks to see if the show exists
 			ProductionCompany prC = ProductionCompanyDAO.getProductionCompanyById(show.getProcoId());
 			List<CreditsRoll> creditsRoll = CreditsRollDAO.getCreditsRollByMovieId(show.getShowid());
-			if(RequestUtil.getRating(ctx) != null) {
-				int rating = Integer.parseInt(RequestUtil.getRating(ctx));
-				System.out.println(rating);
-			}
+			model.put("allReviews", RatingDAO.getShowReviews(show.getShowid()));
+			model.put("avgRating", RatingDAO.showAverageRating(show.getShowid()));
 			model.put("show", show); //adds information about the show its searching for 
 			model.put("productionCompany", prC); //add info about the production company that made that show
 			model.put("actors", creditsRoll);//places other cators that are playing in the movie
@@ -40,4 +49,5 @@ public class ShowController {
 			ctx.render(Template.SHOWERROR, model);
 		}
 	}
+
 }

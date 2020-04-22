@@ -31,9 +31,9 @@ public class RequestUtil {
 	public static String getShowId(Context ctx) {
 		return ctx.formParam("showId");
 	}
+	
+	public static String getReviewText(Context ctx) {
+		return ctx.formParam("textReview");
+	}
     
-
-
-
-
 }

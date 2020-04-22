@@ -7,13 +7,11 @@ public class Account {
     private String lastName;
     private String address;
     private String username;
-
     /**
      * Only stores hashed passwords.
      */
     private String password;
-
-    private String country;
+	private String country;
     private String gender;
     private String email;
 
@@ -26,21 +24,25 @@ public class Account {
 
 
     public Account(String fn, String ln, String a, String c, String g, String email) {
-        // TODO fill in here
-        /* You should use this constructor when you are showing the account page,
-        hence, the user is already logged in. Therefore, the username Should be used
-        to fetch this information from the database. You may have to tweek some stuff
-        here and there.
-        You should NEVER show the current password in the form. NEVER!
-        And if you want to change the password, you need to ask for current password as well.
-         */
+       this.firstName = fn;
+       this.lastName = ln;
+       this.address = a;
+       this.country = c;
+       this.gender = g;
+       this.email = email;
+       
     }
 
 
 
 
-    public void updateDetails() {
-        // TODO
+    public void updateDetails(String fn, String ln, String a, String c, String g, String email) {
+        this.firstName = fn;
+        this.lastName = ln;
+        this.address = a;
+        this.country = c;
+        this.gender = g;
+        this.email = email;
     }
 
 
@@ -53,5 +55,64 @@ public class Account {
     public String getPassword() {
         return password;
     }
+    
+    public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }

@@ -39,7 +39,7 @@ public class Main {
             get(Web.LOGIN, LoginController.serveLoginPage);
             post(Web.LOGIN, LoginController.handleLoginPost);
             post(Web.LOGOUT, LoginController.handleLogoutPost);
-            //get(Web.SHOW, ShowController.fetchShowByTitle);
+            //get(Web.SHOW, ShowController.showIndex);
             post(Web.SHOW, ShowController.showIndex);
             
             

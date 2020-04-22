@@ -1,10 +1,7 @@
 package app.dao;
 
 import app.dao.utils.DatabaseUtils;
-import app.model.Person;
 import app.model.Show;
-
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
