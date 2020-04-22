@@ -7,44 +7,7 @@
 		var ratedIndex = -1;
 		var actualRating = 0;
 		
-		$(document).ready(function() {
-			resetStars();
-			
-			var avgRating = document.getElementById("avgRating").value;
-			
-				if(avgRating != 0){
-					for(var i = 0; i < avgRating; i++){
-						$('.avgRating:eq('+i+')').css('color', '#ffdf00');
-					}
-				}
-			
-			$('.review').on('click', function () {
-				ratedIndex = parseInt($(this).data('index'));
-				actualRating = ratedIndex;
-				actualRating++;
-				console.log(ratedIndex);
-				document.getElementById("ratingNumber").value = actualRating;
-			});
-			
-			$('.review').mouseover(function () {
-				resetStars();
-				
-				var currDataIndex = parseInt($(this).data('index'));
-				
-				for(var i=0; i <= currDataIndex; i++)
-					$('.review:eq('+i+')').css('color', '#ffdf00');
-			});
-		});
 		
-		$('.fa-star').mouseleave(function () {
-				resetStars();
-				
-				if(ratedIndex != -1){
-					for(var i=0; i <=  ratedIndex; i++){
-						$('.review:eq('+i+')').css('color', '#ffdf00');
-					}
-				}
-			});
 			
 		function resetStars(){
 		$('.review').css('color', 'black');
@@ -173,5 +136,45 @@
     #else
    		<h1>Sorry we are unable to find the show that you are looking for</h1>
     #end
+    <script>
+    $(document).ready(function() {
+			resetStars();
+			
+			var avgRating = document.getElementById("avgRating").value;
+			
+				if(avgRating != 0){
+					for(var i = 0; i < avgRating; i++){
+						$('.avgRating:eq('+i+')').css('color', '#ffdf00');
+					}
+				}
+			
+			$('.review').on('click', function () {
+				ratedIndex = parseInt($(this).data('index'));
+				actualRating = ratedIndex;
+				actualRating++;
+				console.log(ratedIndex);
+				document.getElementById("ratingNumber").value = actualRating;
+			});
+			
+			$('.review').mouseover(function () {
+				resetStars();
+				
+				var currDataIndex = parseInt($(this).data('index'));
+				
+				for(var i=0; i <= currDataIndex; i++)
+					$('.review:eq('+i+')').css('color', '#ffdf00');
+			});
+		});
+		
+			$('.fa-star').mouseleave(function () {
+				resetStars();
+				
+				if(ratedIndex != -1){
+					for(var i=0; i <=  ratedIndex; i++){
+						$('.review:eq('+i+')').css('color', '#ffdf00');
+					}
+				}
+			});
+    </script>
 #end
 
