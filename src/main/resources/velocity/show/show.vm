@@ -1,6 +1,75 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
     #if($show && $productionCompany && $actors)
+    
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+	<script>
+		var ratedIndex = -1;
+		var actualRating = 0;
+		
+		$(document).ready(function() {
+			resetStars();
+			
+			var avgRating = document.getElementById("avgRating").value;
+			
+				if(avgRating != 0){
+					for(var i = 0; i < avgRating; i++){
+						$('.avgRating:eq('+i+')').css('color', '#ffdf00');
+					}
+				}
+			
+			$('.review').on('click', function () {
+				ratedIndex = parseInt($(this).data('index'));
+				actualRating = ratedIndex;
+				actualRating++;
+				console.log(ratedIndex);
+				document.getElementById("ratingNumber").value = actualRating;
+			});
+			
+			$('.review').mouseover(function () {
+				resetStars();
+				
+				var currDataIndex = parseInt($(this).data('index'));
+				
+				for(var i=0; i <= currDataIndex; i++)
+					$('.review:eq('+i+')').css('color', '#ffdf00');
+			});
+		});
+		
+		$('.fa-star').mouseleave(function () {
+				resetStars();
+				
+				if(ratedIndex != -1){
+					for(var i=0; i <=  ratedIndex; i++){
+						$('.review:eq('+i+')').css('color', '#ffdf00');
+					}
+				}
+			});
+			
+		function resetStars(){
+		$('.review').css('color', 'black');
+		}
+		
+		function checkStars(){
+			if(ratedIndex == -1){
+				alert('Please enter your star rating.');
+				return false;
+			}else{
+				return true;
+			}
+		}
+		
+		function loadStars(rating, reviewId){
+			var elements = document.getElementsByClassName(reviewId);
+			if(rating != 0){
+					for(var i = 0; i < rating; i++){
+						elements[i].style.color = '#ffdf00' ;
+					}
+				}
+		}
+		
+	</script>
+	
 		<div class="container">
 
 		<h1 class="header">$show.showTitle - ($show.year)</h1>
@@ -13,11 +82,15 @@
 			<p>Genre: $show.genre</p>
 			<p>Productions Company: $productionCompany.name</p>
 			
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
+			<input type="hidden" id="avgRating" name="avgRating" value=$avgRating>
+			
+			<i class="fa fa-star avgRating"></i>
+			<i class="fa fa-star avgRating"></i>
+			<i class="fa fa-star avgRating"></i>
+			<i class="fa fa-star avgRating"></i>
+			<i class="fa fa-star avgRating"></i>
+			
+			
 		</div>
 		
 		</div>
@@ -53,15 +126,16 @@
 						<i class="fa fa-star review" data-index="3"></i>
 						<i class="fa fa-star review" data-index="4"></i>
 					</div>
-						<input type="hidden" id="ratingNumber" name="rating">
-						<input type="hidden" id="showId" name="showId" value=$show.showid>		
+						<input type="hidden" id="ratingNumber" name="ratingNumber" value="0" required>
+						<input type="hidden" id="showId" name="showId" value=$show.showid required>
 					<div class="reviewTwo">	
-						<textarea rows="6" cols="120" name="textReview">Write review here...</textarea>
+						<textarea rows="6" cols="100" name="textReview" required></textarea>
 					</div>
 					
 					<div class="reviewThree">
-						<input class="rateButton" type="submit" value="Rate">
+						<input class="rateButton" type="submit" value="Rate" onClick="return checkStars();"/>
 					</div>
+					
 				</form>
 			</div>
 		#else
@@ -69,50 +143,34 @@
 		#end
 		<div>
 		<h1 class="header">User Reviews</h1>
+		
+		#foreach($review in $allReviews)
+		<div class="reviews">
+				<div class="reviewName">
+					<h3>$review.userName</h3>
+				</div>
+				<div class="reviewStars">
+					<i class="fa fa-star $review.reviewId" data-index="0"></i>
+					<i class="fa fa-star $review.reviewId" data-index="1"></i>
+					<i class="fa fa-star $review.reviewId" data-index="2"></i>
+					<i class="fa fa-star $review.reviewId" data-index="3"></i>
+					<i class="fa fa-star $review.reviewId" data-index="4"></i>
+						
+					<script>
+   						loadStars($review.rating, '$review.reviewId');
+					</script>
+					
+				</div>
+				<div class="reviewText">
+					<p class="reviewTextFormat" >$review.review</p>
+				</div>
+			</div>
+			
+			<div class="reviewBreak"></div>
+				
+		#end
 		</div>	
     #else
    		<h1>Sorry we are unable to find the show that you are looking for</h1>
     #end
-    
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-	<script>
-		var ratedIndex = -1;
-		var actualRating = 0;
-		
-		$(document).ready(function() {
-			resetStars();
-			
-			$('.review').on('click', function () {
-				ratedIndex = parseInt($(this).data('index'));
-				actualRating = ratedIndex;
-				actualRating++;
-				console.log(ratedIndex);
-				document.getElementById("ratingNumber").value = actualRating;
-			});
-			
-			$('.review').mouseover(function () {
-				resetStars();
-				
-				var currDataIndex = parseInt($(this).data('index'));
-				
-				for(var i=0; i <= currDataIndex; i++)
-					$('.review:eq('+i+')').css('color', '#ffdf00');
-			});
-		});
-		
-		$('.fa-star').mouseleave(function () {
-				resetStars();
-				
-				if(ratedIndex != -1){
-					for(var i=0; i <=  ratedIndex; i++){
-						$('.review:eq('+i+')').css('color', '#ffdf00');
-					}
-				}
-			});
-			
-		function resetStars(){
-		$('.review').css('color', 'black');
-		}
-		
-	</script>
 #end
