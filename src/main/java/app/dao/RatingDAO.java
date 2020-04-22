@@ -100,7 +100,7 @@ public class RatingDAO {
 		return 0;
 	}
 	
-	//returns the aveage amount of ratings for a particular show
+	//returns the average amount of ratings for a particular show
 	public static int showAverageRating(int showId) {
 		int average = 0;
 		int count = 0;
