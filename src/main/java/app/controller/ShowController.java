@@ -24,8 +24,10 @@ public class ShowController {
 	};
 	
 	public static void getShow(Context ctx, Map<String, Object> model) {
+		//gets the show object from the database
 		Show show = ShowDAO.getShowSelector(RequestUtil.getQueryTitle(ctx), 0);
 		
+		//checks the paramneters to see if there is information about the show to use 
 		if(show == null) {
 			if(RequestUtil.getShowId(ctx) != null) {
 				show = ShowDAO.getShowSelector(null, Integer.parseInt(RequestUtil.getShowId(ctx)));
@@ -35,15 +37,24 @@ public class ShowController {
 			}
 		}
 		
-		if(show != null) {//checks to see if the show exists
+		//checks to see if the show exists
+		if(show != null) { 
+			//creates the and gets the data needed for the model
 			ProductionCompany prC = ProductionCompanyDAO.getProductionCompanyById(show.getProcoId());
 			List<CreditsRoll> creditsRoll = CreditsRollDAO.getCreditsRollByMovieId(show.getShowid());
+			//adds the show reviews into the model
 			model.put("allReviews", RatingDAO.getShowReviews(show.getShowid()));
+			//adds the average rating that is to be displayed in the page via stars
 			model.put("avgRating", RatingDAO.showAverageRating(show.getShowid()));
-			model.put("show", show); //adds information about the show its searching for 
-			model.put("productionCompany", prC); //add info about the production company that made that show
-			model.put("actors", creditsRoll);//places other cators that are playing in the movie
+			//adds information about the show
+			model.put("show", show);
+			//adds information about the production company that is going to be used
+			model.put("productionCompany", prC);
+			//adds information about the actors into the webpage
+			model.put("actors", creditsRoll);
+			//reders the page inform,ation with the information that we have p[ut in the model
 			ctx.render(Template.SHOW, model);
+			
 			//if no show exists render an error page
 		}else {
 			ctx.render(Template.SHOWERROR, model);

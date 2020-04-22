@@ -21,9 +21,15 @@ public class SearchController {
 			ShowController.getShow(ctx, model);
 		}else if(RequestUtil.getQueryActor(ctx)!= null) {
 			PersonController.getActor(ctx, model);
+			
+			//checks to see if the ctx objects contains information about the show
 		}else if(RequestUtil.getShowId(ctx) != null) {
+			
+			//creates a review objrct to pass to the DAO
 			UserReview userReview = new UserReview(DatabaseUtils.getNewReviewNumber(), Integer.parseInt(RequestUtil.getShowId(ctx)),
 					RequestUtil.getSessionCurrentUser(ctx), Integer.parseInt(RequestUtil.getRating(ctx)), RequestUtil.getReviewText(ctx), new Date());
+			
+			//adds the review int the database via the showDAO
 			RatingDAO.insertReviewIntoDataBase(userReview);
 			ShowController.getShow(ctx, model);
 		}

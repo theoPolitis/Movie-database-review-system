@@ -13,7 +13,7 @@ import java.util.List;
 public class ShowDAO {
 	
 	public static Show getShowSelector(String showTitle, int id) {
-
+	
 		String sqlId = "SELECT * "+ "FROM imbd.show WHERE showid LIKE '%" + id + "%'";
 		String sqlTitle = "SELECT * "+ "FROM imbd.show WHERE show_title LIKE '" + showTitle + "%'";
 		
