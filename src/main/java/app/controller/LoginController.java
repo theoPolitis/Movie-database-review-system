@@ -4,6 +4,8 @@ import app.controller.paths.Template;
 import app.controller.paths.Web;
 import app.controller.utils.RequestUtil;
 import app.controller.utils.ViewUtil;
+import app.dao.AccountDAO;
+import app.model.Account;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import java.util.Map;
@@ -33,6 +35,11 @@ public class LoginController {
             ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
             model.put("authenticationSucceeded", true);
             model.put("currentUser", getQueryUsername(ctx));
+
+            model.put("userObject", AccountDAO.getUserByUsername(getQueryUsername(ctx)));
+
+            model.put("isAdmin", true);
+
             if (RequestUtil.getQueryLoginRedirect(ctx) != null) {
                 ctx.redirect(RequestUtil.getQueryLoginRedirect(ctx));
             }
@@ -74,9 +81,6 @@ public class LoginController {
     public static String getQueryPassword(Context ctx) {
         return ctx.formParam("password");
     }
-
-
-
 
     public static boolean removeSessionAttrLoggedOut(Context ctx) {
         String loggedOut = ctx.sessionAttribute("loggedOut");

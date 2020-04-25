@@ -1,6 +1,10 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 
+    #if($userObject.getAdmin())
+        <h1>Hi admin</h1>
+    #end
+
 <h1>Search Movies</h1>
 <form id="searchTitleForm" method="post">
     <label>Search by Show Title</label>

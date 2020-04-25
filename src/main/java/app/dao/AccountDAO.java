@@ -30,7 +30,7 @@ public class AccountDAO {
 
         try {
             // Here you prepare your sql statement
-            String sql = "SELECT username, password FROM account WHERE username ='" + username + "'";
+            String sql = "SELECT username, password, admin FROM account WHERE username ='" + username + "'";
 
             // Execute the query
             Connection connection = DatabaseUtils.connectToDatabase();
@@ -43,7 +43,8 @@ public class AccountDAO {
                 accounts.add(
                   // 1) Create a new account object
                   new Account(result.getString("username"),
-                          result.getString("password"))
+                          result.getString("password"),
+                          result.getBoolean("admin"))
                 );
             }
 

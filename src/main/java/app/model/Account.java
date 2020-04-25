@@ -14,12 +14,14 @@ public class Account {
 	private String country;
     private String gender;
     private String email;
+    private boolean admin;
 
 
 
-    public Account(String un, String p) {
+    public Account(String un, String p, boolean admin) {
         username = un;
         password = p;
+        this.admin = admin;
     }
 
 
@@ -114,5 +116,9 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public boolean getAdmin() { return admin; }
+
+	public void setAdmin() { this.admin = true; }
 
 }
