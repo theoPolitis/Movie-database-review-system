@@ -117,8 +117,21 @@ public class Account {
 		this.email = email;
 	}
 
-	public boolean getAdmin() { return admin; }
+	public boolean getAdmin() { 
+		return admin; 
+	}
 
-	public void setAdmin() { this.admin = true; }
+	public void setAdmin() { 
+		this.admin = true; 
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("userName: " + this.username);
+		sb.append("admin: " + this.admin);
+		
+		return sb.toString();
+	}
 
 }
