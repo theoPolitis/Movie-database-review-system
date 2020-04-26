@@ -1,22 +1,36 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 
-    #if($userObject.admin)
-        <h1>Hi admin</h1>
+    #if ($currentUser)
+        #if($userObject.admin)
+            <h1>Hello Administrator</h1>
+        #else
+            <h1>Hi $userObject.username</h1>
+        #end
     #end
- 
-<h1>$userObject.username<h1>
+
+
+
 <h1>Search Movies</h1>
-<form id="searchTitleForm" method="post">
-    <label>Search by Show Title</label>
-    <input type="text" name="showTitleSearch" placeholder="Show Title" value="" required>
-    <input type="submit" value="Search">
-</form>
 
+    <div class="container">
 
-<form id="searchActorForm" method="post">
-    <label>Search by Actor</label>
-    <input type="text" name="showActorSearch" placeholder="ActorName" value="" required>
-    <input type="submit" value="Search">
-</form>
+        <form id="searchTitleForm" method="post">
+            <label>Search by Show Title</label>
+            <input type="text" name="showTitleSearch" placeholder="Show Title" value="" required>
+            <input type="submit" value="Search" class="defaultBtn">
+        </form>
+
+    </div>
+
+    <div class="container">
+
+        <form id="searchActorForm" method="post">
+            <label>Search by Actor</label>
+            <input type="text" name="showActorSearch" placeholder="ActorName" value="" required>
+            <input type="submit" value="Search" class="defaultBtn">
+        </form>
+
+    </div>
+
 #end

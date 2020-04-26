@@ -20,6 +20,11 @@
                             <button id="logout">Log Out</button>
                         </form>
                     </li>
+                    #if($userObject.admin)
+                        <li><a href="/adminPortal">Admin Portal</a></li>
+                    #elseif(!$userObject.admin)
+                        <li><a href="/entry">Show Entry</a></li>
+                    #end
                     <li><a href="/account" id="account">Account</a></li>
                 #else
                     <li><a href="/login" >Log In</a></li>

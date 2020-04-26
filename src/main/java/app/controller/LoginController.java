@@ -35,6 +35,7 @@ public class LoginController {
             ctx.sessionAttribute("currentUser", getQueryUsername(ctx));
             model.put("authenticationSucceeded", true);
             model.put("currentUser", getQueryUsername(ctx));
+            model.put("userObject", AccountDAO.getUserByUsername(RequestUtil.getSessionCurrentUser(ctx)));
             if (RequestUtil.getQueryLoginRedirect(ctx) != null) {
                 ctx.redirect(RequestUtil.getQueryLoginRedirect(ctx));
             }

@@ -1,10 +1,6 @@
 package app;
 
-import app.controller.AccountController;
-import app.controller.IndexController;
-import app.controller.LoginController;
-import app.controller.SearchController;
-import app.controller.ShowController;
+import app.controller.*;
 import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import app.model.Show;
@@ -48,6 +44,13 @@ public class Main {
 
             // Add new actions here
             // Seeing pages (get) and sending information in forms (post)
+
+            get(Web.ADMINPORTAL, AdminPortalController.serveAdminPage);
+
+
+            get(Web.ENTRY, EntryController.serveEntryPage);
+
+            post(Web.ENTRY, EntryController.addEntry);
         });
 
         app.error(404, ViewUtil.notFound);

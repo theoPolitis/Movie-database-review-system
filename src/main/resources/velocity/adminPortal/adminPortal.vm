@@ -1,0 +1,42 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+
+    #if($userObject.admin)
+
+
+        <div class="container">
+            <h1>Admin Portal</h1>
+        </div>
+
+
+        <div class="container">
+            <h1 class="header">Pending Show Entries</h1>
+
+            <table>
+                <thead>
+                    <td>Show Title</td>
+                    <td>Genre</td>
+                    <td>Length</td>
+                    <td>Year</td>
+                    <td>Approve</td>
+                </thead>
+
+                #foreach($show in $pendingList)
+                    <tr>
+                        <td>$show.showTitle</td>
+                        <td>$show.genre</td>
+                        <td>$show.length</td>
+                        <td>$show.year</td>
+                        <td><button class="defaultBtn"><a href="#">APPROVE</a></button></td>
+                    </tr>
+                #end
+
+            </table>
+
+        </div>
+
+    #else
+        <h1>You do not have admin rights</h1>
+    #end
+
+#end

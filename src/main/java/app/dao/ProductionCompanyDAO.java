@@ -45,4 +45,27 @@ public class ProductionCompanyDAO {
 	        return null;
 	    }
 
+	public static List<ProductionCompany> getAllProCo() {
+
+		List<ProductionCompany> proCoList = new ArrayList<>();
+
+		String sql = "SELECT * FROM imbd.production_company";
+
+		try {
+
+			Connection connection = DatabaseUtils.connectToDatabase();
+			Statement statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(sql);
+
+			while (result.next()) {
+				proCoList.add(new ProductionCompany(result.getInt("proco_id"), result.getString("proco_name")));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return proCoList;
+
+	}
 }

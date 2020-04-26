@@ -1,0 +1,49 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+
+    #if($currentUser)
+
+        <div class="container">
+
+            <h1>Show Entry</h1>
+
+        </div>
+
+        <div class="container">
+
+            <h1 class="header">Enter a new show with the details below</h1>
+
+            <form method="entry" id="addForm">
+
+                <label>Show Title:</label><input type="text" name="title">
+                <label>Genre:</label><input type="text" name="genre">
+                <label>Length:</label><input type="text" name="length">
+                <label>Movie:</label><input type="checkbox" name="movie">
+                <br>
+                <br>
+                <label>Series:</label><input type="checkbox" name="series">
+                <br>
+                <br>
+                <label>Production Company:</label>
+                <br>
+                <select name="proco" id="proco">
+                    #foreach($pro in $proCo)
+                        <option value="$pro.procoId">$pro.name</option>
+                    #end
+                </select>
+                <label>Year:</label><input type="text" name="year">
+
+                <input type="submit" class="defaultBtn">
+
+            </form>
+
+        </div>
+
+
+    #else
+        <h1>You must be logged in to use this feature.</h1>
+    #end
+
+
+
+#end

@@ -14,4 +14,6 @@ public class Template {
     public static final String SHOWERROR = "/velocity/error/showError.vm";
     public static final String ACTORERROR = "/velocity/error/actorError.vm";
 
+    public static final String ADMINPORTAL = "/velocity/adminPortal/adminPortal.vm";
+    public static final String ENTRY = "/velocity/entry/entry.vm";
 }
