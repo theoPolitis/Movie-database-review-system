@@ -16,14 +16,14 @@ public class EntryController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
         model.put("proCo", ProductionCompanyDAO.getAllProCo());
-
+        System.out.println("works serveEntryHandler");
         ctx.render(Template.ENTRY, model);
     };
 
 
     public static Handler addEntry = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-
+        
         System.out.println("ADD ENTRY HANDLER");
 
         String title = ctx.formParam("title");

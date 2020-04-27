@@ -13,6 +13,7 @@ public class AdminPortalController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
         model.put("pendingList", ShowDAO.getPendingShows());
+        System.out.println(ShowDAO.getPendingShows());
 
         // model.put("userObject", AccountDAO.getUserByUsername(RequestUtil.getSessionCurrentUser(ctx)));
         ctx.render(Template.ADMINPORTAL, model);

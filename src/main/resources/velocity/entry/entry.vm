@@ -13,15 +13,15 @@
 
             <h1 class="header">Enter a new show with the details below</h1>
 
-            <form method="entry" id="addForm">
+            <form method="post" id="addForm">
 
-                <label>Show Title:</label><input type="text" name="title">
-                <label>Genre:</label><input type="text" name="genre">
-                <label>Length:</label><input type="text" name="length">
+                <label>Show Title:</label><input type="text" name="title" required>
+                <label>Genre:</label><input type="text" name="genre" required>
+                <label>Length:</label><input type="text" name="length" required>
                 <label>Movie:</label><input type="checkbox" name="movie">
                 <br>
                 <br>
-                <label>Series:</label><input type="checkbox" name="series">
+                <label>Series:</label><input type="checkbox" name="series" >
                 <br>
                 <br>
                 <label>Production Company:</label>
@@ -31,7 +31,7 @@
                         <option value="$pro.procoId">$pro.name</option>
                     #end
                 </select>
-                <label>Year:</label><input type="text" name="year">
+                <label>Year:</label><input type="text" name="year" required>
 
                 <input type="submit" class="defaultBtn">
 
