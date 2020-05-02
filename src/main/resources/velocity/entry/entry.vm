@@ -15,7 +15,7 @@
 
             <form method="post" id="addForm">
 
-                <input type="hidden" name="proco" value="$userObject.proco">
+                <input type="hidden" name="isProco" value="$userObject.proco">
 
                 <label>Show Title:</label><input type="text" name="title" required>
                 <label>Genre:</label><input type="text" name="genre" required>

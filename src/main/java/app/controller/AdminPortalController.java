@@ -3,6 +3,7 @@ package app.controller;
 import app.controller.paths.Template;
 import app.controller.utils.ViewUtil;
 import app.dao.ShowDAO;
+import app.model.Show;
 import io.javalin.http.Handler;
 
 import java.util.Map;
@@ -12,10 +13,34 @@ public class AdminPortalController {
     public static Handler serveAdminPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
-        model.put("pendingList", ShowDAO.getPendingShows());
+        model.put("pendingList", ShowDAO.getPendingShows("SELECT * FROM imbd.show WHERE show.status = 'UnderInvestigation'"));
+        model.put("suspendedList", ShowDAO.getPendingShows("SELECT * FROM imbd.show WHERE show.status = 'Suspended'"));
         // System.out.println(ShowDAO.getPendingShows());
 
         // model.put("userObject", AccountDAO.getUserByUsername(RequestUtil.getSessionCurrentUser(ctx)));
+        ctx.render(Template.ADMINPORTAL, model);
+    };
+
+    public static Handler alterEntry = ctx -> {
+        Map<String, Object> model = ViewUtil.baseModel(ctx);
+
+        String formData = ctx.formParam("alter");
+
+        String alterCommands[] = formData.split(", ");
+
+        String sqlCommand;
+
+        if (alterCommands[1].equals("Remove")) {
+            sqlCommand = "DELETE FROM imbd.show WHERE showid=" + alterCommands[0];
+        } else {
+            sqlCommand = "UPDATE imbd.show SET status='" + alterCommands[1] + "' WHERE showid=" + alterCommands[0];
+        }
+
+        ShowDAO.alterShow(sqlCommand);
+
+        model.put("pendingList", ShowDAO.getPendingShows("SELECT * FROM imbd.show WHERE show.status = 'UnderInvestigation'"));
+        model.put("suspendedList", ShowDAO.getPendingShows("SELECT * FROM imbd.show WHERE show.status = 'Suspended'"));
+
         ctx.render(Template.ADMINPORTAL, model);
     };
 

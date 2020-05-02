@@ -34,10 +34,10 @@ public class EntryController {
         int year = Integer.parseInt(ctx.formParam("year"));
 
 
-        String status = "submitted";
+        String status = "UnderInvestigation";
 
         // FIX THIS
-        if (Boolean.parseBoolean(ctx.formParam("proco"))) {
+        if (ctx.formParam("isProco").equals("1")) {
             status = "Visible";
         }
 

@@ -8,9 +8,10 @@
             <h1>Admin Portal</h1>
         </div>
 
+    <form method="post">
 
         <div class="container">
-            <h1 class="header">Pending Show Entries</h1>
+            <h1 class="header">Entries Under Investigation</h1>
 
             <table>
                 <thead>
@@ -19,6 +20,7 @@
                     <td>Length</td>
                     <td>Year</td>
                     <td>Approve</td>
+                    <td>Suspend</td>
                     <td>Remove</td>
                 </thead>
 
@@ -28,14 +30,44 @@
                         <td>$show.genre</td>
                         <td>$show.length</td>
                         <td>$show.year</td>
-                        <td><button class="defaultBtn"><a href="#">APPROVE</a></button></td>
-                        <td><button class="defaultBtn"><a href="#">REMOVE</a></button></td>
-                    </tr>
+                        <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Visible">APPROVE</button></td>
+                        <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Suspended">SUSPEND</button></td>
+                        <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Remove">REMOVE</button></td>
                 #end
 
             </table>
 
         </div>
+
+    <div class="container">
+        <h1 class="header">Suspended Shows</h1>
+
+        <table>
+            <thead>
+            <td>Show Title</td>
+            <td>Genre</td>
+            <td>Length</td>
+            <td>Year</td>
+            <td>Approve</td>
+            <td>Remove</td>
+            </thead>
+
+            #foreach($show in $suspendedList)
+                <tr>
+                    <td>$show.showTitle</td>
+                    <td>$show.genre</td>
+                    <td>$show.length</td>
+                    <td>$show.year</td>
+                    <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Visible">APPROVE</button></td>
+                    <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Remove">REMOVE</button></td>
+                </tr>
+            #end
+
+        </table>
+
+    </div>
+
+    </form>
 
     #else
         <h1>You do not have admin rights</h1>

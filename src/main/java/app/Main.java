@@ -47,6 +47,8 @@ public class Main {
 
             get(Web.ADMINPORTAL, AdminPortalController.serveAdminPage);
 
+            post(Web.ADMINPORTAL, AdminPortalController.alterEntry);
+
 
             get(Web.ENTRY, EntryController.serveEntryPage);
 

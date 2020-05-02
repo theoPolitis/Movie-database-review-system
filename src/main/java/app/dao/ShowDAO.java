@@ -59,7 +59,7 @@ public class ShowDAO {
         return null;
     }
 
-    public static List<Show> getPendingShows() {
+    public static List<Show> getPendingShows(String sqlFormat) {
 	    List<Show> shows = new ArrayList<>();
 
         try {
@@ -67,7 +67,7 @@ public class ShowDAO {
             Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
 
-            String sql = "SELECT * FROM imbd.show WHERE show.status = 'UnderInvestigation'";
+            String sql = sqlFormat;
 
             ResultSet result = statement.executeQuery(sql);
 
@@ -91,8 +91,8 @@ public class ShowDAO {
 
     public static void createShowEntry(String title, String genre, float length, int movie, int series,  int proco_id, int year, String status) {
 
-        String sql = "INSERT INTO imbd.show(show_title, genre, length, movie, series, proco_id, year, status)" +
-                "VALUES('" + title + "', '" + genre + "', " + length + ", " + movie + ", " + series + ", " + proco_id + ", " + year + ", " + status + ");";
+        String sql = "INSERT INTO imbd.show(show_title, genre, length, movie, series, proco_id, year, status, entryDate)" +
+                "VALUES('" + title + "', '" + genre + "', " + length + ", " + movie + ", " + series + ", " + proco_id + ", " + year + ", '" + status + "', CURRENT_TIMESTAMP);";
 
         try {
 
@@ -107,6 +107,25 @@ public class ShowDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void alterShow(String sqlFormat) {
+
+	    String sql = sqlFormat;
+
+        try {
+
+            Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(sql);
+
+            DatabaseUtils.closeConnection(connection);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
