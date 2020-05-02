@@ -381,6 +381,10 @@ td {
     padding: 5px 10px;
 }
 
+.AProw:hover {
+    background-color: #dddddd;
+}
+
 .ratings {
     background: White;
     padding: 50px;
@@ -499,6 +503,19 @@ select {
     opacity:1;
 }
 
-button > a {
-    color: #ffffff;
+.miniBtn {
+    background-color: #F5C518;
+    color: white;
+    padding: 8px 10px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    border-radius: 2px;
+}
+
+.remove {
+    background-color: #cf1928;
+    color: #121212;
 }

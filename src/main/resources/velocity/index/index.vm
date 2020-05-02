@@ -1,17 +1,22 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 
-    #if ($currentUser)
-        #if($userObject.admin)
-            <h1>Hello Administrator</h1>
-        #else
-            <h1>Hi $userObject.username</h1>
+    <div class="container">
+
+        #if ($currentUser)
+            #if($userObject.admin)
+                <h1>Hello Administrator,</h1>
+            #else
+                <h1>Hi $userObject.username,</h1>
+            #end
         #end
-    #end
+
+        <h1>Search Movies</h1>
+
+    </div>
 
 
 
-<h1>Search Movies</h1>
 
     <div class="container">
 

@@ -25,14 +25,14 @@
                 </thead>
 
                 #foreach($show in $pendingList)
-                    <tr>
+                    <tr class="AProw">
                         <td>$show.showTitle</td>
                         <td>$show.genre</td>
                         <td>$show.length</td>
                         <td>$show.year</td>
-                        <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Visible">APPROVE</button></td>
-                        <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Suspended">SUSPEND</button></td>
-                        <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Remove">REMOVE</button></td>
+                        <td><button class="miniBtn" name="alter" type="submit" value="$show.showid, Visible">APPROVE</button></td>
+                        <td><button class="miniBtn" name="alter" type="submit" value="$show.showid, Suspended">SUSPEND</button></td>
+                        <td><button class="miniBtn remove" name="alter" type="submit" value="$show.showid, Remove">REMOVE</button></td>
                 #end
 
             </table>
@@ -53,13 +53,13 @@
             </thead>
 
             #foreach($show in $suspendedList)
-                <tr>
+                <tr class="AProw">
                     <td>$show.showTitle</td>
                     <td>$show.genre</td>
                     <td>$show.length</td>
                     <td>$show.year</td>
-                    <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Visible">APPROVE</button></td>
-                    <td><button class="defaultBtn" name="alter" type="submit" value="$show.showid, Remove">REMOVE</button></td>
+                    <td><button class="miniBtn" name="alter" type="submit" value="$show.showid, Visible">APPROVE</button></td>
+                    <td><button class="miniBtn remove" name="alter" type="submit" value="$show.showid, Remove">REMOVE</button></td>
                 </tr>
             #end
 
