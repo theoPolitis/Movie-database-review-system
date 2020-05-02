@@ -498,3 +498,7 @@ select {
 .defaultBtn:hover {
     opacity:1;
 }
+
+button > a {
+    color: #ffffff;
+}

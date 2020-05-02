@@ -16,25 +16,32 @@ public class EntryController {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
         model.put("proCo", ProductionCompanyDAO.getAllProCo());
-        System.out.println("works serveEntryHandler");
         ctx.render(Template.ENTRY, model);
     };
 
 
     public static Handler addEntry = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-        
-        System.out.println("ADD ENTRY HANDLER");
 
         String title = ctx.formParam("title");
         String genre = ctx.formParam("genre");
-        int length = Integer.parseInt(ctx.formParam("length"));
-        boolean isMovie = Boolean.parseBoolean(ctx.formParam("movie"));
-        boolean isSeries = Boolean.parseBoolean(ctx.formParam("series"));
+        float length = Float.parseFloat(ctx.formParam("length"));
+
+        int isMovie = Integer.parseInt(ctx.formParam("movie"));
+        int isSeries = Integer.parseInt(ctx.formParam("series"));
+
         int proco = Integer.parseInt(ctx.formParam("proco"));
         int year = Integer.parseInt(ctx.formParam("year"));
 
-        ShowDAO.createShowEntry(title, genre, length, isMovie, isSeries, proco, year);
+
+        String status = "submitted";
+
+        // FIX THIS
+        if (Boolean.parseBoolean(ctx.formParam("proco"))) {
+            status = "Visible";
+        }
+
+        ShowDAO.createShowEntry(title, genre, length, isMovie, isSeries, proco, year, status);
 
         ctx.render(Template.ENTRY, model);
     };

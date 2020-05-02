@@ -15,9 +15,10 @@ public class Show {
     private int proco_id;
     private List<UserReview> userReviewList;
     private ProductionCompany productionCompany;
+    private String status;
     
     public Show(int showid, String showTitle, double length, boolean isMovie, boolean isSeries,
-    		String genre, int year, int proco_id) {
+    		String genre, int year, int proco_id, String status) {
     	this.showid = showid;
     	this.showTitle = showTitle;
     	this.length = length;
@@ -26,6 +27,7 @@ public class Show {
     	this.genre = genre;
     	this.year = year;
     	this.proco_id = proco_id;
+    	this.status = status;
     }
     
     public String getImage() {

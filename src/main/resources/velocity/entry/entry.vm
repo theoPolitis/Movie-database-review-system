@@ -15,13 +15,17 @@
 
             <form method="post" id="addForm">
 
+                <input type="hidden" name="proco" value="$userObject.proco">
+
                 <label>Show Title:</label><input type="text" name="title" required>
                 <label>Genre:</label><input type="text" name="genre" required>
                 <label>Length:</label><input type="text" name="length" required>
-                <label>Movie:</label><input type="checkbox" name="movie">
+                <label>Movie:</label><input type="checkbox" name="movie" value="1">
+                <input type="hidden" name="movie" value="0">
                 <br>
                 <br>
-                <label>Series:</label><input type="checkbox" name="series" >
+                <label>Series:</label><input type="checkbox" name="series" value="1">
+                <input type="hidden" name="series" value="0">
                 <br>
                 <br>
                 <label>Production Company:</label>

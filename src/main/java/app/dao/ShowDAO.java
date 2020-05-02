@@ -42,7 +42,7 @@ public class ShowDAO {
                 // 2) Add it to the list we have prepared
                 shows.add(new Show(result.getInt("showid"), result.getString("show_title"),
                 		result.getDouble("length"), result.getBoolean("movie"), result.getBoolean("series"),
-                		result.getString("genre"), result.getInt("year"), result.getInt("proco_id")));
+                		result.getString("genre"), result.getInt("year"), result.getInt("proco_id"), result.getString("status")));
             }
 
             // Close it
@@ -67,7 +67,7 @@ public class ShowDAO {
             Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
 
-            String sql = "SELECT * FROM imbd.show WHERE show.status = 0";
+            String sql = "SELECT * FROM imbd.show WHERE show.status = 'UnderInvestigation'";
 
             ResultSet result = statement.executeQuery(sql);
 
@@ -75,7 +75,7 @@ public class ShowDAO {
                 // 2) Add it to the list we have prepared
                 shows.add(new Show(result.getInt("showid"), result.getString("show_title"),
                         result.getDouble("length"), result.getBoolean("movie"), result.getBoolean("series"),
-                        result.getString("genre"), result.getInt("year"), result.getInt("proco_id")));
+                        result.getString("genre"), result.getInt("year"), result.getInt("proco_id"), result.getString("status")));
             }
 
 
@@ -89,17 +89,17 @@ public class ShowDAO {
 
     }
 
-    public static void createShowEntry(String title, String genre, int length, boolean movie, boolean series,  int proco_id, int year) {
+    public static void createShowEntry(String title, String genre, float length, int movie, int series,  int proco_id, int year, String status) {
 
         String sql = "INSERT INTO imbd.show(show_title, genre, length, movie, series, proco_id, year, status)" +
-                "VALUES(" + title + ", " + genre + ", " + length + ", " + movie + ", " + series + ", " + proco_id + ", " + year + ", 0)";
+                "VALUES('" + title + "', '" + genre + "', " + length + ", " + movie + ", " + series + ", " + proco_id + ", " + year + ", " + status + ");";
 
         try {
 
             Connection connection = DatabaseUtils.connectToDatabase();
             Statement statement = connection.createStatement();
 
-            statement.executeQuery(sql);
+            statement.executeUpdate(sql);
 
 
             DatabaseUtils.closeConnection(connection);

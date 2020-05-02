@@ -15,13 +15,15 @@ public class Account {
     private String gender;
     private String email;
     private boolean admin;
+    private boolean proco;
 
 
 
-    public Account(String un, String p, boolean admin) {
+    public Account(String un, String p, boolean admin, boolean proco) {
         username = un;
         password = p;
         this.admin = admin;
+        this.proco = proco;
     }
 
 

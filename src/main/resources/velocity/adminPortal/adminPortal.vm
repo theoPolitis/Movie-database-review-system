@@ -19,6 +19,7 @@
                     <td>Length</td>
                     <td>Year</td>
                     <td>Approve</td>
+                    <td>Remove</td>
                 </thead>
 
                 #foreach($show in $pendingList)
@@ -28,6 +29,7 @@
                         <td>$show.length</td>
                         <td>$show.year</td>
                         <td><button class="defaultBtn"><a href="#">APPROVE</a></button></td>
+                        <td><button class="defaultBtn"><a href="#">REMOVE</a></button></td>
                     </tr>
                 #end
 
