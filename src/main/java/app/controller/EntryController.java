@@ -23,26 +23,34 @@ public class EntryController {
     public static Handler addEntry = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
-        String title = ctx.formParam("title");
-        String genre = ctx.formParam("genre");
-        float length = Float.parseFloat(ctx.formParam("length"));
+        try {
 
-        int isMovie = Integer.parseInt(ctx.formParam("movie"));
-        int isSeries = Integer.parseInt(ctx.formParam("series"));
+            String title = ctx.formParam("title");
+            String genre = ctx.formParam("genre");
+            float length = Float.parseFloat(ctx.formParam("length"));
 
-        int proco = Integer.parseInt(ctx.formParam("proco"));
-        int year = Integer.parseInt(ctx.formParam("year"));
+            int isMovie = Integer.parseInt(ctx.formParam("movie"));
+            int isSeries = Integer.parseInt(ctx.formParam("series"));
+
+            int proco = Integer.parseInt(ctx.formParam("proco"));
+            int year = Integer.parseInt(ctx.formParam("year"));
 
 
-        String status = "UnderInvestigation";
+            String status = "UnderInvestigation";
 
-        if (ctx.formParam("isProco").equals("yes")) {
-            status = "Submitted";
+            if (ctx.formParam("isProco").equals("yes")) {
+                status = "Submitted";
+            }
+
+            ShowDAO.createShowEntry(title, genre, length, isMovie, isSeries, proco, year, status);
+
+            ctx.render(Template.ENTRY, model);
+
+        } catch (Exception e) {
+            ctx.render(Template.ENTRYERROR, model);
+            e.printStackTrace();
         }
 
-        ShowDAO.createShowEntry(title, genre, length, isMovie, isSeries, proco, year, status);
-
-        ctx.render(Template.ENTRY, model);
     };
 
 }

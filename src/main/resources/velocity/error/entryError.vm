@@ -1,0 +1,4 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+<h1>Please enter valid values for the new entry form</h1>
+#end
