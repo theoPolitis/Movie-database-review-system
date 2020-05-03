@@ -11,15 +11,16 @@ import java.util.Map;
 public class AdminPortalController {
 	private static final String INVESTIGATION = "UnderInvestigation";
 	private static final String SUSPENDED = "Suspended";
+	private static final String VISIBLE = "Visible";
+	private static final String SUBMITTED = "Submitted";
 
     public static Handler serveAdminPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
-
-        System.out.println(ShowDAO.getShowsByStatus(INVESTIGATION));
-        System.out.println(ShowDAO.getShowsByStatus(SUSPENDED));
         
         model.put("pendingList", ShowDAO.getShowsByStatus(INVESTIGATION));
         model.put("suspendedList", ShowDAO.getShowsByStatus(SUSPENDED));
+        model.put("visibleList", ShowDAO.getShowsByStatus(VISIBLE));
+        model.put("submittedList", ShowDAO.getShowsByStatus(SUBMITTED));
 
         ctx.render(Template.ADMINPORTAL, model);
     };
@@ -40,11 +41,11 @@ public class AdminPortalController {
         }
 
         ShowDAO.alterShow(sqlCommand);
-        System.out.println(ShowDAO.getShowsByStatus(INVESTIGATION));
-        System.out.println(ShowDAO.getShowsByStatus(SUSPENDED));
         
         model.put("pendingList", ShowDAO.getShowsByStatus(INVESTIGATION));
         model.put("suspendedList", ShowDAO.getShowsByStatus(SUSPENDED));
+        model.put("visibleList", ShowDAO.getShowsByStatus(VISIBLE));
+        model.put("submittedList", ShowDAO.getShowsByStatus(SUBMITTED));
 
         ctx.render(Template.ADMINPORTAL, model);
     };
