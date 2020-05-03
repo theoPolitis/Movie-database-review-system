@@ -67,6 +67,46 @@
 
     </div>
 
+    <div class="container">
+
+        <h1 class="header">Visible Shows</h1>
+
+        <table>
+            <thead>
+            <td>Show Title</td>
+            <td>Genre</td>
+            <td>Length</td>
+            <td>Year</td>
+            <td>SUSPEND</td>
+            <td>Remove</td>
+            </thead>
+
+            #foreach($show in $visibleList)
+                <tr class="AProw">
+                    <td>$show.showTitle</td>
+                    <td>$show.genre</td>
+                    <td>$show.length</td>
+                    <td>$show.year</td>
+                    <td><button class="miniBtn" name="alter" type="submit" value="$show.showid, Suspended">SUSPEND</button></td>
+                    <td><button class="miniBtn remove" name="alter" type="submit" value="$show.showid, Remove">REMOVE</button></td>
+                </tr>
+            #end
+
+            #foreach($show in $submittedList)
+                <tr class="AProw">
+                    <td>$show.showTitle</td>
+                    <td>$show.genre</td>
+                    <td>$show.length</td>
+                    <td>$show.year</td>
+                    <td><button class="miniBtn" name="alter" type="submit" value="$show.showid, Suspended">SUSPEND</button></td>
+                    <td><button class="miniBtn remove" name="alter" type="submit" value="$show.showid, Remove">REMOVE</button></td>
+                </tr>
+            #end
+
+        </table>
+
+    </div>
+
     </form>
 
     #else
