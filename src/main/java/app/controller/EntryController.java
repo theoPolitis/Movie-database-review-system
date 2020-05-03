@@ -36,9 +36,8 @@ public class EntryController {
 
         String status = "UnderInvestigation";
 
-        // FIX THIS
-        if (ctx.formParam("isProco").equals("1")) {
-            status = "Visible";
+        if (ctx.formParam("isProco").equals("yes")) {
+            status = "Submitted";
         }
 
         ShowDAO.createShowEntry(title, genre, length, isMovie, isSeries, proco, year, status);

@@ -7,17 +7,34 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 
 
 public class ShowDAO {
-	
+
+	public final static long MILLIS_PER_DAY = 24 * 60 * 60 * 1000L;
+
 	private static List<Show> allShows = getAllShows();
 	
 	public static Show getShowByTitle(String title) {
 		for(Show show : allShows) {
 			if(show.getShowTitle().toLowerCase().contains(title.toLowerCase())) {
-				return show;
+				if (show.getStatus().equals("Submitted")) {
+
+					Date now = new Date();
+					Date entryDate = show.getTimeStamp();
+
+					boolean moreThanDay = Math.abs(now.getTime() - entryDate.getTime()) > MILLIS_PER_DAY;
+
+					if (moreThanDay) {
+						return show;
+					}
+
+				} else {
+					return show;
+				}
+
 			}
 		}
 		
@@ -104,7 +121,7 @@ public class ShowDAO {
 				// 2) Add it to the list we have prepared
 				shows.add(new Show(result.getInt("showid"), result.getString("show_title"),
             		result.getDouble("length"), result.getBoolean("movie"), result.getBoolean("series"),
-            		result.getString("genre"), result.getInt("year"), result.getInt("proco_id"), result.getString("status")));
+            		result.getString("genre"), result.getInt("year"), result.getInt("proco_id"), result.getString("status"), result.getDate("entryDate")));
         }
 
 			// Close it

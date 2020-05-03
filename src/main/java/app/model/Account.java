@@ -126,6 +126,10 @@ public class Account {
 	public void setAdmin() { 
 		this.admin = true; 
 	}
+
+	public void setProco() { this.proco = true; }
+
+	public boolean getProco() { return proco; }
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

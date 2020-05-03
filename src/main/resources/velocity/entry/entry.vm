@@ -15,7 +15,11 @@
 
             <form method="post" id="addForm">
 
-                <input type="hidden" name="isProco" value="$userObject.proco">
+                #if($userObject.proco)
+                    <input type="hidden" name="isProco" value="yes">
+                #else
+                    <input type="hidden" name="isProco" value="no">
+                #end
 
                 <label>Show Title:</label><input type="text" name="title" required>
                 <label>Genre:</label><input type="text" name="genre" required>

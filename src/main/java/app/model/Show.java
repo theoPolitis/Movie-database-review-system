@@ -2,6 +2,7 @@ package app.model;
 
 
 import java.util.List;
+import java.util.Date;
 
 
 public class Show {
@@ -16,9 +17,10 @@ public class Show {
     private List<UserReview> userReviewList;
     private ProductionCompany productionCompany;
     private String status;
-    
+    private Date entryDate;
+
     public Show(int showid, String showTitle, double length, boolean isMovie, boolean isSeries,
-    		String genre, int year, int proco_id, String status) {
+    		String genre, int year, int proco_id, String status, Date entryDate) {
     	this.showid = showid;
     	this.showTitle = showTitle;
     	this.length = length;
@@ -28,6 +30,7 @@ public class Show {
     	this.year = year;
     	this.proco_id = proco_id;
     	this.status = status;
+    	this.entryDate = entryDate;
     }
     
     public String getImage() {
@@ -113,6 +116,8 @@ public class Show {
 	public String getStatus() {
 		return status;
 	}
+
+	public Date getTimeStamp() { return entryDate; }
 	
 	public String toString() {
 		StringBuilder sb =  new StringBuilder();

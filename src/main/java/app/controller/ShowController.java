@@ -26,7 +26,7 @@ public class ShowController {
 	public static void getShow(Context ctx, Map<String, Object> model) {
 		//gets the show object from the database
 		Show show = ShowDAO.getShowByTitle(RequestUtil.getQueryTitle(ctx));
-		
+
 		//checks the paramneters to see if there is information about the show to use 
 		if(show == null) {
 			if(RequestUtil.getShowId(ctx) != null) {
