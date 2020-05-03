@@ -9,15 +9,18 @@ import io.javalin.http.Handler;
 import java.util.Map;
 
 public class AdminPortalController {
+	private static final String INVESTIGATION = "UnderInvestigation";
+	private static final String SUSPENDED = "Suspended";
 
     public static Handler serveAdminPage = ctx -> {
         Map<String, Object> model = ViewUtil.baseModel(ctx);
 
-        model.put("pendingList", ShowDAO.getPendingShows("SELECT * FROM imbd.show WHERE show.status = 'UnderInvestigation'"));
-        model.put("suspendedList", ShowDAO.getPendingShows("SELECT * FROM imbd.show WHERE show.status = 'Suspended'"));
-        // System.out.println(ShowDAO.getPendingShows());
+        System.out.println(ShowDAO.getShowsByStatus(INVESTIGATION));
+        System.out.println(ShowDAO.getShowsByStatus(SUSPENDED));
+        
+        model.put("pendingList", ShowDAO.getShowsByStatus(INVESTIGATION));
+        model.put("suspendedList", ShowDAO.getShowsByStatus(SUSPENDED));
 
-        // model.put("userObject", AccountDAO.getUserByUsername(RequestUtil.getSessionCurrentUser(ctx)));
         ctx.render(Template.ADMINPORTAL, model);
     };
 
@@ -37,9 +40,11 @@ public class AdminPortalController {
         }
 
         ShowDAO.alterShow(sqlCommand);
-
-        model.put("pendingList", ShowDAO.getPendingShows("SELECT * FROM imbd.show WHERE show.status = 'UnderInvestigation'"));
-        model.put("suspendedList", ShowDAO.getPendingShows("SELECT * FROM imbd.show WHERE show.status = 'Suspended'"));
+        System.out.println(ShowDAO.getShowsByStatus(INVESTIGATION));
+        System.out.println(ShowDAO.getShowsByStatus(SUSPENDED));
+        
+        model.put("pendingList", ShowDAO.getShowsByStatus(INVESTIGATION));
+        model.put("suspendedList", ShowDAO.getShowsByStatus(SUSPENDED));
 
         ctx.render(Template.ADMINPORTAL, model);
     };

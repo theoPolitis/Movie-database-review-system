@@ -109,9 +109,9 @@ public class Show {
 	public ProductionCompany getProductionCompany() {
 		return productionCompany;
 	}
-
-	public void setProductionCompany(ProductionCompany productionCompany) {
-		this.productionCompany = productionCompany;
+	
+	public String getStatus() {
+		return status;
 	}
 	
 	public String toString() {
