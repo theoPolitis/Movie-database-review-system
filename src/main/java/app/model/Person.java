@@ -24,6 +24,8 @@ public class Person {
         this.bio = b;
     }
     
+    
+    //getter for person object
     public String getImage() {
     	return "/img/people/" + personId + ".jpg";
     }
@@ -31,8 +33,6 @@ public class Person {
     public String toString() {
     	return fullName;
     }
-
-
 
     public String getRole() {
         return role;

@@ -71,6 +71,8 @@ public class RatingDAO {
 		return null;
 	}
 	
+	
+	
 	//gets the reviews for a particular show that we want from the List
 	public static List<UserReview> getShowReviews(int showId){
 		List<UserReview> showReviews = new ArrayList<UserReview>();

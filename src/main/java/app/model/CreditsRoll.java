@@ -20,16 +20,9 @@ public class CreditsRoll {
         this.showId = showId;
     }
     
-    public String toString() {
-    	return person.toString();
-    }
-    
+    //getters for the show object    
     public int getShowId() {
     	return showId;
-    }
-    
-    public void setShowId(int showId) {
-    	this.showId = showId;
     }
 
 
@@ -53,11 +46,4 @@ public class CreditsRoll {
         return character;
     }
 
-    public void setCharacter(String character) {
-        this.character = character;
-    }
-
-    public void setEndYear(int endYear) {
-        this.endYear = endYear;
-    }
 }

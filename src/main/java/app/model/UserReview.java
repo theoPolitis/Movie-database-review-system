@@ -30,25 +30,14 @@ public class UserReview {
     	return userName;
     }
     
-    public void setUserName(String userName) {
-    	this.userName = userName;
-    }
-    
     public String getReview() {
         return review;
-    }
-
-    public void setReview(String review) {
-        this.review = review;
     }
 
     public int getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
 
     public Date getDate() {
         return date;

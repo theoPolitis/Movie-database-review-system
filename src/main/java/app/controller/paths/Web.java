@@ -17,7 +17,6 @@ public class Web {
     public static final String PERSON = "/person";
     public static final String ACTORERROR = "/actorerror";
     public static final String SHOWERROR = "/showerror";
-
     public static final String ADMINPORTAL = "/adminPortal";
     public static final String ENTRY = "/entry";
 }

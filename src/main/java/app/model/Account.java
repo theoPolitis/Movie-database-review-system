@@ -37,9 +37,6 @@ public class Account {
        
     }
 
-
-
-
     public void updateDetails(String fn, String ln, String a, String c, String g, String email) {
         this.firstName = fn;
         this.lastName = ln;
@@ -51,6 +48,7 @@ public class Account {
 
 
 
+    //getter methods for Account object
     public String getUsername() {
         return username;
     }
@@ -64,29 +62,12 @@ public class Account {
 		return firstName;
 	}
 
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-
 	public String getLastName() {
 		return lastName;
 	}
 
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-
 	public String getAddress() {
 		return address;
-	}
-
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 
@@ -94,21 +75,9 @@ public class Account {
 		return country;
 	}
 
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-
 	public String getGender() {
 		return gender;
 	}
-
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
 
 	public String getEmail() {
 		return email;
@@ -123,14 +92,10 @@ public class Account {
 		return admin; 
 	}
 
-	public void setAdmin() { 
-		this.admin = true; 
-	}
-
-	public void setProco() { this.proco = true; }
-
 	public boolean getProco() { return proco; }
 	
+	
+	//string representation of the object
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		

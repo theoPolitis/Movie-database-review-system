@@ -24,14 +24,17 @@ public class RequestUtil {
 		return ctx.formParam("showActorSearch");
 	}
 	
+	//get the rating for the show
 	public static String getRating(Context ctx) {
 		return ctx.formParam("ratingNumber");
 	}
 	
+	//gets the show id from form
 	public static String getShowId(Context ctx) {
 		return ctx.formParam("showId");
 	}
 	
+	//gets the review from the textbox
 	public static String getReviewText(Context ctx) {
 		return ctx.formParam("textReview");
 	}

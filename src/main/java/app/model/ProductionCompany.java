@@ -1,9 +1,5 @@
 package app.model;
 
-
-
-
-
 public class ProductionCompany {
     private String name;
     private int procoId;

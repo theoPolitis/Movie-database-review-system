@@ -33,6 +33,7 @@ public class Show {
     	this.entryDate = entryDate;
     }
     
+    //getters for the show object
     public String getImage() {
     	return "/img/shows/" + showid + ".jpg";
     }
@@ -40,41 +41,21 @@ public class Show {
     public int getProcoId() {
     	return proco_id;
     }
-    
-    public void setProcoId(int proco_id) {
-    	this.proco_id = proco_id;
-    }
-    
+   
 	public int getShowid() {
 		return showid;
-	}
-
-	public void setShowid(int showid) {
-		this.showid = showid;
 	}
 
 	public String getShowTitle() {
 		return showTitle;
 	}
 
-	public void setShowTitle(String showTitle) {
-		this.showTitle = showTitle;
-	}
-
 	public double getLength() {
 		return length;
 	}
 
-	public void setLength(double length) {
-		this.length = length;
-	}
-
 	public boolean isMovie() {
 		return isMovie;
-	}
-
-	public void setMovie(boolean isMovie) {
-		this.isMovie = isMovie;
 	}
 
 	public boolean isSeries() {
@@ -89,24 +70,12 @@ public class Show {
 		return genre;
 	}
 
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-
 	public int getYear() {
 		return year;
 	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
+	
 	public List<UserReview> getUserReviewList() {
 		return userReviewList;
-	}
-
-	public void setUserReviewList(List<UserReview> userReviewList) {
-		this.userReviewList = userReviewList;
 	}
 
 	public ProductionCompany getProductionCompany() {
@@ -119,6 +88,7 @@ public class Show {
 
 	public Date getTimeStamp() { return entryDate; }
 	
+	//string representation of show object
 	public String toString() {
 		StringBuilder sb =  new StringBuilder();
 		
