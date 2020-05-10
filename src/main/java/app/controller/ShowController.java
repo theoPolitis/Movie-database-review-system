@@ -42,10 +42,11 @@ public class ShowController {
 			//creates the and gets the data needed for the model
 			ProductionCompany prC = ProductionCompanyDAO.getProductionCompanyById(show.getProcoId());
 			List<CreditsRoll> creditsRoll = CreditsRollDAO.getCreditsRollByMovieId(show.getShowid());
+			int ID = show.getShowid();
 			//adds the show reviews into the model
-			model.put("allReviews", RatingDAO.getShowReviews(show.getShowid()));
+			model.put("allReviews", RatingDAO.getShowReviews(ID));
 			//adds the average rating that is to be displayed in the page via stars
-			model.put("avgRating", RatingDAO.showAverageRating(show.getShowid()));
+			model.put("avgRating", RatingDAO.showAverageRating(ID));
 			//adds information about the show
 			model.put("show", show);
 			//adds information about the production company that is going to be used

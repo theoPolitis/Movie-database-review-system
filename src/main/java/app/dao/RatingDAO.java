@@ -51,7 +51,7 @@ public class RatingDAO {
 			ResultSet result = statement.executeQuery(sql);
 			
 			//adds all the data as objects in java so that we can do something with the information.
-			while (result.next()) {
+			while (result.next()) { 
 				// 2) Add it to the list we have prepared
 				uR.add(new UserReview(result.getInt("reviewId"), result.getInt("show_id"), result.getString("user_id"),
 								result.getInt("rating"), result.getString("review"), result.getDate("date")));
