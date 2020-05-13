@@ -19,4 +19,5 @@ public class Web {
     public static final String SHOWERROR = "/showerror";
     public static final String ADMINPORTAL = "/adminPortal";
     public static final String ENTRY = "/entry";
+    public static final String CREATEACCOUNT = "/create";
 }
