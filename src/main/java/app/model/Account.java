@@ -5,7 +5,7 @@ package app.model;
 public class Account {
     private String firstName;
     private String lastName;
-    private int organisationPhone;
+    private String organisationPhone;
     private String organisationName;
     private String username;
     private int yearOfBirth;
@@ -22,11 +22,13 @@ public class Account {
     private boolean filmCritic;
     private boolean approved;
 
-    public Account(String un, String p, boolean admin, boolean proco) {
+    public Account(String un, String p, boolean admin, boolean proco, boolean filmCritic, boolean approved) {
         username = un;
         password = p;
         this.admin = admin;
         this.proco = proco;
+        this.filmCritic = filmCritic;
+        this.approved = approved;
     }
 
     //for film critic
@@ -48,7 +50,7 @@ public class Account {
     }
     
     public Account(String fn, String ln, String postCode, String c, String gender, int yearOfBirth, String email, String un,
-    		String password, boolean admin, boolean proco, boolean filmCritic, boolean approved, String organisationName, int organisationPhone) {
+    		String password, boolean admin, boolean proco, boolean filmCritic, boolean approved, String organisationName, String organisationPhone) {
        this.firstName = fn;
        this.lastName = ln;
        this.country = c;
@@ -91,11 +93,11 @@ public class Account {
 		this.lastName = lastName;
 	}
 
-	public int getOrganisationPhone() {
+	public String getOrganisationPhone() {
 		return organisationPhone;
 	}
 
-	public void setOrganisationPhone(int organisationPhone) {
+	public void setOrganisationPhone(String organisationPhone) {
 		this.organisationPhone = organisationPhone;
 	}
 

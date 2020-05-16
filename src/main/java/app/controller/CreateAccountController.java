@@ -3,6 +3,7 @@ package app.controller;
 import java.util.Map;
 
 import app.controller.paths.Template;
+import app.controller.paths.Web;
 import app.controller.utils.ViewUtil;
 import app.dao.AccountDAO;
 import app.model.Account;
@@ -45,11 +46,11 @@ public class CreateAccountController {
    	 }
         // You'll have to update the model... maybe here
 
-        ctx.render(Template.LOGIN, model);
+        ctx.redirect(Web.INDEX);
    };
    
    private static void setOrganisation(Account account, Context ctx) {
 	   account.setOrganisationName(ctx.formParam("organisationname"));
-	   account.setOrganisationPhone(Integer.parseInt(ctx.formParam("organisationphone")));
+	   account.setOrganisationPhone(ctx.formParam("organisationphone"));
    }
 }

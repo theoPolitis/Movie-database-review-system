@@ -52,4 +52,35 @@ public class ProductionCompanyDAO {
 		return proCoList;
 
 	}
+	
+	public static void AlterPCO(String procoName, boolean delete) {
+		String sql;
+		if(!delete) {
+			sql = "INSERT INTO imbd.production_company(proco_id, proco_name)" + "VALUES('" + getNextID() + "', '" + procoName + "');" ;
+		}else {
+			sql = "DELETE FROM imbd.production_company WHERE proco_name = '" + procoName + "';";
+		}
+		
+		try {
+			// opens a connection to the database
+			Connection connection = DatabaseUtils.connectToDatabase();
+			// create statement object
+			Statement statement = connection.createStatement();
+			// use .executeUpdate() for inserting items into the database
+			statement.executeUpdate(sql);
+
+			// close connection
+			DatabaseUtils.closeConnection(connection);
+			
+			//update the list
+			allPCO = getAllPCO();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static int getNextID() {
+		return allPCO.size() + 1;
+	}
 }

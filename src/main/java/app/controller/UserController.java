@@ -22,6 +22,10 @@ public class UserController {
         if (user == null) {
             return false;
         }
+        
+        if(!user.isApproved()) {
+        	return false;
+        }
 
         /**
          * What is the "salt"? You can read more in here:
