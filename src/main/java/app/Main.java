@@ -55,6 +55,7 @@ public class Main {
             post(Web.ENTRY, EntryController.addEntry);
             
             get(Web.CREATEACCOUNT, CreateAccountController.serveCreateAccountPage);
+            post(Web.CREATEACCOUNT, CreateAccountController.createAccount);
         });
 
         app.error(404, ViewUtil.notFound);
