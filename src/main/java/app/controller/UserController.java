@@ -23,6 +23,7 @@ public class UserController {
             return false;
         }
         
+        //only use approved shows
         if(!user.isApproved()) {
         	return false;
         }

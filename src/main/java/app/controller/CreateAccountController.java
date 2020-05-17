@@ -14,12 +14,15 @@ public class CreateAccountController {
 
 	public static Handler serveCreateAccountPage = ctx -> {
 		 Map<String, Object> model = ViewUtil.baseModel(ctx);
-	        // You'll have to update the model... maybe here
+	        //render basic create account page
 	     ctx.render(Template.CREATEACCOUNT, model);
 	};
 	
+	//uses this when the form is submitted
 	public static Handler createAccount = ctx -> {
+	//create model
    	 Map<String, Object> model = ViewUtil.baseModel(ctx);
+   	 //geta all variables from the database
    	 String firstName = ctx.formParam("firstname");
    	 String lastName = ctx.formParam("lastname");
    	 String gender = ctx.formParam("gender");
@@ -31,7 +34,8 @@ public class CreateAccountController {
    	 String password = ctx.formParam("password");
    	 
    	 Account account = null;
-   	     
+   	 
+   	 //checks to see what type of account is being created and uses the approriate constructor to insert into the database
    	 if(ctx.formParam("account").equals("standard")) {
    		 account = new Account(firstName, lastName, postCode, country, gender, yearOfBirth, email, username, password, false, false, false, true);
    		 AccountDAO.insertNewAccount(account, true); 
@@ -44,11 +48,11 @@ public class CreateAccountController {
    		setOrganisation(account, ctx);
    		AccountDAO.insertNewAccount(account, false);
    	 }
-        // You'll have to update the model... maybe here
 
         ctx.redirect(Web.INDEX);
    };
    
+   //if the account has an organization then adds the organization to the database
    private static void setOrganisation(Account account, Context ctx) {
 	   account.setOrganisationName(ctx.formParam("organisationname"));
 	   account.setOrganisationPhone(ctx.formParam("organisationphone"));

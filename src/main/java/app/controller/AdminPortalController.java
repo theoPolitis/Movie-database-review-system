@@ -71,14 +71,18 @@ public class AdminPortalController {
     //private method that updates the model and returns the object map
     private static Map<String, Object> updateModel(Map<String, Object> model){
     	
+    	//put basic data into the model that relevent at all times
     	model.put("pendingList", ShowDAO.getShowsByStatus(INVESTIGATION));
         model.put("suspendedList", ShowDAO.getShowsByStatus(SUSPENDED));
         model.put("visibleList", ShowDAO.getShowsByStatus(VISIBLE));
         model.put("submittedList", ShowDAO.getShowsByStatus(SUBMITTED));
         
+        //created differnet model keys for the PCO and FC
+        //made it easy to differentiate in the html page
         List<Account> PCO = new ArrayList<Account>();
         List<Account> FC = new ArrayList<Account>();
         
+        //displays unapproved accounts
         for(Account a : AccountDAO.getUnApprovedAccounts()) {
         	if(a.isProco()) {
         		PCO.add(a);
@@ -92,6 +96,7 @@ public class AdminPortalController {
         List<Account> PCOApproved = new ArrayList<Account>();
         List<Account> FCApproved = new ArrayList<Account>();
         
+        //displays the approved accounts for deleting
         for(Account a : AccountDAO.getApprovedPCOAndFCAccounts()) {
         	if(a.isFilmCritic()) {
         		FCApproved.add(a);
@@ -102,6 +107,7 @@ public class AdminPortalController {
         	}
         }
         
+        //add lists to model with approriate key
         model.put("PCOApproved", PCOApproved);
         model.put("FCApproved", FCApproved);
         model.put("PCO", PCO);

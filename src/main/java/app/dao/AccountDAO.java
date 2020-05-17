@@ -27,6 +27,7 @@ public class AccountDAO {
      * @return Some of the user data to check on the password. Null if there
      *         no matching user.
      */
+    //contains a list of all the accounts in the system
     private static List<Account> accounts = getAllAccountsFromData();
     
     public static List<Account> getUnApprovedAccounts(){
@@ -41,48 +42,20 @@ public class AccountDAO {
     	return tmp;
     }
     
+    //returns an account of a user
     public static Account getUserByUsername(String username) {
-        // Fish out the results
-        List<Account> tmp = new ArrayList<>();
-        accounts = getAllAccountsFromData();
-        try {
-            // Here you prepare your sql statement
-            String sql = "SELECT username, password, admin, proCo, film_critic, approved FROM account WHERE username ='" + username + "'";
-
-            // Execute the query
-            Connection connection = DatabaseUtils.connectToDatabase();
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-
-            // If you have multiple results, you do a while
-            while(result.next()) {
-            	
-                // 2) Add it to the list we have prepared
-                tmp.add(
-                  // 1) Create a new account object
-                  new Account(result.getString("username"),
-                          result.getString("password"),
-                          result.getBoolean("admin"),
-                          result.getBoolean("proCo"),
-                  		  result.getBoolean("film_critic"),
-                  		  result.getBoolean("approved")
-                ));
-            }
-
-            // Close it
-            DatabaseUtils.closeConnection(connection);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        
-        if(!tmp.isEmpty()) {
-        	return tmp.get(0);
-        }
-        return null;
+    	
+    	for(Account a : accounts) {
+    		if(a.getUsername().equals(username)) {
+    			return a;
+    		}
+    	}
+    	
+    	return null;
     }
     
+    //used for changing a column in the database
+    //just pass an sql statemenmt
     public static void alterAccount(String sqlFormat) {
 		try {
 			// open a connection to the database
@@ -103,14 +76,19 @@ public class AccountDAO {
 	}
      
     
+   //used for inserting into the database
     public static void insertNewAccount(Account account, boolean isNormal) {
+    	//hash password
     	String sql = "";
     	String hashedPassword =  BCrypt.hashpw(account.getPassword(), SALT);
+    	//convert booleans (only way it worked)
     	int isAdmin = (account.isAdmin()) ? 1 : 0;
     	int isProco = (account.isProco()) ? 1 : 0;
     	int isFilmCritic = (account.isFilmCritic()) ? 1 : 0;
     	int approved = (account.isApproved()) ? 1 : 0;
     	
+    	//check if standard account or not and do something according to that
+    	//used for the approved boolean in the database
     	if(isNormal) {
     		sql = "INSERT INTO imbd.account (username, password, email, country, postCode, gender, year_of_birth, first_name, last_name, admin, proCo, film_critic, approved) "
     			+ "VALUES('" + account.getUsername() + "', '" + hashedPassword + "', '" + account.getEmail() + "', '" + account.getCountry() + "', '" + account.getPostCode() + "', '" + account.getGender() + "', '" + account.getYearOfBirth() + "', '" + account.getFirstName() + "', '" + account.getLastName() + "', '" + isAdmin + "', '" + isProco + "', '" + isFilmCritic+ "', '" + approved + "')";
@@ -137,6 +115,7 @@ public class AccountDAO {
 		}
     }
     
+    //gets all the accounts from the database
     private static List<Account> getAllAccountsFromData() {
 
     	List<Account> tmp = new ArrayList<Account>();
@@ -161,6 +140,7 @@ public class AccountDAO {
     	return tmp;
     }
 
+    //only gets the approved accounts in the database
 	public static List<Account> getApprovedPCOAndFCAccounts() {
 		List<Account> tmp = new ArrayList<Account>();
 		for(Account a : accounts) {
