@@ -54,7 +54,9 @@ public class CreateAccountController {
    
    //if the account has an organization then adds the organization to the database
    private static void setOrganisation(Account account, Context ctx) {
-	   account.setOrganisationName(ctx.formParam("organisationname"));
-	   account.setOrganisationPhone(ctx.formParam("organisationphone"));
+	   account.setOrganisationName(ctx.formParam("organisationName"));
+	   account.setOrganisationPhone(ctx.formParam("organisationPhone"));
    }
+
+   
 }
