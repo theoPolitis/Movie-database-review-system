@@ -4,6 +4,7 @@ import app.dao.utils.DatabaseUtils;
 import app.model.Account;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,8 @@ public class AccountDAO {
     
     //used for changing a column in the database
     //just pass an sql statemenmt
-    public static void alterAccount(String sqlFormat) {
+    public static void alterAccount(String sqlFormat) throws SQLException {
+    	
 		try {
 			// open a connection to the database
 			Connection connection = DatabaseUtils.connectToDatabase();
@@ -70,7 +72,7 @@ public class AccountDAO {
 			accounts = getAllAccountsFromData();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new SQLException();
 		}
 
 	}
