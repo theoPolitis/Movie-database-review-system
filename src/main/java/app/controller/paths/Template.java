@@ -17,5 +17,6 @@ public class Template {
     public static final String ENTRYERROR = "/velocity/error/entryError.vm";
     public static final String ADMINPORTAL = "/velocity/adminPortal/adminPortal.vm";
     public static final String ENTRY = "/velocity/entry/entry.vm";
+    public static final String EDITSHOW = "/velocity/show/editShow.vm";
     
 }

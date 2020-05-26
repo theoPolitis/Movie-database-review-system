@@ -56,6 +56,10 @@ public class Main {
             
             get(Web.CREATEACCOUNT, CreateAccountController.serveCreateAccountPage);
             post(Web.CREATEACCOUNT, CreateAccountController.createAccount);
+
+            // get(Web.EDITSHOW, ShowController.editIndex);
+
+            post(Web.EDITSHOW, ShowController.editIndex);
         });
 
         app.error(404, ViewUtil.notFound);

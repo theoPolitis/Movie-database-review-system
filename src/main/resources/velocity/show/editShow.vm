@@ -1,0 +1,68 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+    #if($show)
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <form action="/editShow" method="post">
+        <div class="container">
+
+            <div class="header">
+                <input type="hidden" name="origin" value="editPage">
+                <input type="hidden" name="showId" value="$show.showId">
+                <p>Title:</p>
+                <input type="text" name="showTitleSearch" value="$show.showTitle">
+                <p>Year:</p>
+                <input type="text" name="year" value="$show.year">
+            </div>
+
+            <br>
+
+            <img class="jumbo" src="$show.image" alt="$show.showTitle">
+
+            <div class="specs right">
+                <h3>Specifications</h3>
+                <p>Runtime: </p><input type="text" name="length" value="$show.length">
+                <p>Genre: </p><input type="text" name="genre" value="$show.genre">
+                <p>Productions Company: $productionCompany.name</p>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <h1 class="header">Cast</h1>
+            <table>
+                <thead>
+                <td>Cast Member</td>
+                <td>Character</td>
+                <td>Role</td>
+                <td>Start Year</td>
+                </thead>
+                #foreach($actor in $actors)
+                    <tr>
+                        <td><input type="text" value="$actor.person" name="$actor.person.personId"></td>
+                        <td><input type="text" value="$actor.character" name="$actor.personId"></td>
+                        <td><input type="text" value="$actor.role" name="$actor.personId"></td>
+                        <td><input type="text" value="$actor.startYear" name="$actor.personId"></td>
+
+                    </tr>
+                #end
+            </table>
+            #if(!$actors)
+                <h2 class="rateLoginError">No Actors have been Added yet</h2>
+            #end
+        </div>
+
+        <div class="container">
+
+            <input type="submit" value="UPDATE SHOW" class="defaultBtn">
+
+        </div>
+
+    </form>
+
+    #else
+    <h1>Sorry, no show has been selected to be edited</h1>
+    #end
+#end
+

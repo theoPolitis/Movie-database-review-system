@@ -20,4 +20,5 @@ public class Web {
     public static final String ADMINPORTAL = "/adminPortal";
     public static final String ENTRY = "/entry";
     public static final String CREATEACCOUNT = "/create";
+    public static final String EDITSHOW = "/editShow";
 }

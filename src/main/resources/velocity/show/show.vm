@@ -40,6 +40,13 @@
 		<img class="jumbo" src="$show.image" alt="$show.showTitle">
 
 		<div class="specs right">
+			#if($userObject.organisationName == $productionCompany.name)
+				<form method="post" action="/editShow">
+					<input type="hidden" name="showId" value="$show.showid">
+					<input type="hidden" name="origin" value="showPage">
+					<button id="edit" class="defaultBtn">EDIT</button>
+				</form>
+			#end
 			<h3>Specifications</h3>
 			<p>Runtime: $show.length hrs</p>
 			<p>Genre: $show.genre</p>

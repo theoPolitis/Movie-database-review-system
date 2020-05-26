@@ -20,6 +20,7 @@ public class ShowController {
 	
 	public static Handler showIndex = ctx -> {
 		Map<String, Object> model = ViewUtil.baseModel(ctx);
+
 		getShow(ctx, model);
 	};
 	
@@ -36,7 +37,7 @@ public class ShowController {
 				return;
 			}
 		}
-		
+
 		//checks to see if the show exists
 		if(show != null) { 
 			//creates the and gets the data needed for the model
@@ -61,5 +62,44 @@ public class ShowController {
 			ctx.render(Template.SHOWERROR, model);
 		}
 	}
+
+	public static Handler editIndex = ctx -> {
+		Map<String, Object> model = ViewUtil.baseModel(ctx);
+
+		Show show = ShowDAO.getShowById(Integer.parseInt(ctx.formParam("showId")));
+
+		ProductionCompany prC = ProductionCompanyDAO.getProductionCompanyById(show.getProcoId());
+		List<CreditsRoll> creditsRoll = CreditsRollDAO.getCreditsRollByMovieId(show.getShowid());
+
+		model.put("show", show);
+		model.put("productionCompany", prC);
+		model.put("actors", creditsRoll);
+
+		if (ctx.formParam("origin").equals("showPage")) {
+			ctx.render(Template.EDITSHOW, model);
+		} else if (ctx.formParam("origin").equals("editPage")) {
+
+			try	{
+
+				String title = ctx.formParam("showTitleSearch");
+				String genre = ctx.formParam("genre");
+				int year = Integer.parseInt(ctx.formParam("year"));
+				double length = Double.parseDouble(ctx.formParam("length"));
+
+				String sql = "UPDATE imbd.show SET show_title = '" + title + "', genre = '" + genre + "', length = " + length + ", year = " + year;
+
+				ShowDAO.alterShow(sql);
+
+				getShow(ctx, model);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				ctx.render(Template.ENTRYERROR, model);
+			}
+
+
+		}
+
+	};
 
 }
