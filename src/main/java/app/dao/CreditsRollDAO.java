@@ -78,4 +78,20 @@ public class CreditsRollDAO {
         // If we are here, something bad happened
         return null;
     }
+
+    public static void alterCredits(String sqlFormat) {
+        try {
+            // open a connection to the database
+            Connection connection = DatabaseUtils.connectToDatabase();
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(sqlFormat);
+
+            // close connection to the database
+            DatabaseUtils.closeConnection(connection);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

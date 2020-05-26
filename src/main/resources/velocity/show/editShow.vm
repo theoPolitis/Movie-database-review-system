@@ -8,7 +8,7 @@
 
             <div class="header">
                 <input type="hidden" name="origin" value="editPage">
-                <input type="hidden" name="showId" value="$show.showId">
+                <input type="hidden" name="showId" value="$show.showid">
                 <p>Title:</p>
                 <input type="text" name="showTitleSearch" value="$show.showTitle">
                 <p>Year:</p>
@@ -40,10 +40,10 @@
                 </thead>
                 #foreach($actor in $actors)
                     <tr>
-                        <td><input type="text" value="$actor.person" name="$actor.person.personId"></td>
-                        <td><input type="text" value="$actor.character" name="$actor.personId"></td>
-                        <td><input type="text" value="$actor.role" name="$actor.personId"></td>
-                        <td><input type="text" value="$actor.startYear" name="$actor.personId"></td>
+                        <td>$actor.person</td>
+                        <td><input type="text" value="$actor.character" name="$actor.person.personId-character"></td>
+                        <td><input type="text" value="$actor.role" name="$actor.person.personId-role"></td>
+                        <td><input type="text" value="$actor.startYear" name="$actor.person.personId-year"></td>
 
                     </tr>
                 #end

@@ -6,10 +6,7 @@ import java.util.Map;
 
 import app.controller.paths.Template;
 import app.controller.utils.*;
-import app.dao.CreditsRollDAO;
-import app.dao.ProductionCompanyDAO;
-import app.dao.RatingDAO;
-import app.dao.ShowDAO;
+import app.dao.*;
 import app.model.CreditsRoll;
 import app.model.ProductionCompany;
 import app.model.Show;
@@ -81,14 +78,28 @@ public class ShowController {
 
 			try	{
 
+				int id = Integer.parseInt(ctx.formParam("showId"));
 				String title = ctx.formParam("showTitleSearch");
 				String genre = ctx.formParam("genre");
 				int year = Integer.parseInt(ctx.formParam("year"));
 				double length = Double.parseDouble(ctx.formParam("length"));
 
-				String sql = "UPDATE imbd.show SET show_title = '" + title + "', genre = '" + genre + "', length = " + length + ", year = " + year;
+				String sql = "UPDATE imbd.show SET show_title = '" + title + "', genre = '" + genre + "', length = " + length + ", year = " + year + " WHERE showid = " + id;
 
 				ShowDAO.alterShow(sql);
+
+				for (int i = 0; i < creditsRoll.size(); i++) {
+
+					String selected = Integer.toString(creditsRoll.get(i).getPerson().getPersonId());
+
+					String character = ctx.formParam(selected + "-character");
+					String role = ctx.formParam(selected + "-role");
+					int personYear = Integer.parseInt(ctx.formParam(selected + "-year"));
+
+					String creditsSql = "UPDATE imbd.credits_roll SET role = '" + role + "', character_name = '" + character + "', start_year = " + personYear + " WHERE person_id = " + selected;
+
+					CreditsRollDAO.alterCredits(creditsSql);
+				}
 
 				getShow(ctx, model);
 
