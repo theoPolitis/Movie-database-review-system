@@ -55,6 +55,10 @@ public class ProductionCompanyDAO {
 	
 	public static void AlterPCO(String procoName, boolean delete) {
 		String sql;
+		if(procoName == null) {
+			throw new NullPointerException();
+		}
+		
 		if(!delete) {
 			sql = "INSERT INTO imbd.production_company(proco_id, proco_name)" + "VALUES('" + getNextID() + "', '" + procoName + "');" ;
 		}else {
