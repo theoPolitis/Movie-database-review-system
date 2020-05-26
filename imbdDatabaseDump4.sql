@@ -49,7 +49,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('admin','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','admin@system.com','Australia','3033','Male',0,'System','Admin',1,0,0,NULL,NULL,1),('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','Australia','3033','Female',0,'Cara','Wilson',0,0,0,NULL,NULL,1),('proco','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','proco@email.com','Australia','3033','Male',0,'Example','ProCo',0,1,0,'Indie Films','123456789',1),('testStandard','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','theo.politis6@gmail.com','Antigua & Barbuda','3033','female',1998,'test','test',0,0,0,NULL,NULL,1),('time','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','time@gmail.com.au','Bhutan','3033','male',1998,'Time','Politis',0,0,1,'Time Magazine','0424042404',1);
+INSERT INTO `account` VALUES ('admin','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','admin@system.com','Australia','3033','Male',0,'System','Admin',1,0,0,NULL,NULL,1),('caramel6','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','caramelwilson@gmail.com','Australia','3033','Female',0,'Cara','Wilson',0,0,0,NULL,NULL,1),('proco','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','proco@email.com','Australia','3033','Male',0,'Example','ProCo',0,1,0,'Indie Films','123456789',1),('testStandard','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','theo.politis6@gmail.com','Antigua & Barbuda','3033','female',1998,'test','test',0,0,0,NULL,NULL,1),('time','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','time@gmail.com.au','Bhutan','3033','male',1998,'Time','Politis',0,0,1,'Time Magazine','0424042404',1),('walt','$2a$10$h.dl5J86rGH7I8bD9bZeZeci0pDt0.VwFTGujlnEaZXPf/q7vM5wO','walt@disney.com','USA','3033','male',0,'Walt','Disney',0,1,0,'Walt Disney Pictures','0432445938',1);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +156,7 @@ CREATE TABLE `show` (
   PRIMARY KEY (`showid`),
   KEY `fk_proco_idx` (`proco_id`),
   CONSTRAINT `fk_proco` FOREIGN KEY (`proco_id`) REFERENCES `production_company` (`proco_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,7 +165,7 @@ CREATE TABLE `show` (
 
 LOCK TABLES `show` WRITE;
 /*!40000 ALTER TABLE `show` DISABLE KEYS */;
-INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.22,1,0,9,2019,'Visible',NULL),(3,'Joker','Crime',2.01,1,0,9,2019,'Visible',NULL),(25,'Something','Action',3.25,0,1,6,2015,'Visible','2020-05-10 23:33:48');
+INSERT INTO `show` VALUES (1,'Star Wars: Episode IX - The Rise of Skywalker','Action',2.44,1,0,9,2019,'Visible',NULL),(3,'Joker','Crime',2.01,1,0,9,2019,'Visible',NULL),(25,'Something','Action',3.25,0,1,6,2015,'Visible','2020-05-10 23:33:48');
 /*!40000 ALTER TABLE `show` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,4 +210,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-16 20:59:25
+-- Dump completed on 2020-05-27  0:20:36
